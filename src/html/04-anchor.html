@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>하이퍼링크</title>
+
+    <style>
+      .link-box {
+        text-align: center;
+        align-items: center;
+        border: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>하이퍼링크</h1>
+
+    <h2>하이퍼링크 및 이미지 UI 예제</h2>
+    <figure class="link-box">
+      <img src="/src/assets/cafew/card-02-@1x.jpg" alt="사무실 전경 이미지" />
+      <figcaption>
+        <h3>RESPONSIVE WEBDESIGN</h3>
+        <h3>DESIGN STRATEGIES</h3>
+        <p>반응형 웹디자인 전략</p>
+      </figcaption>
+      <a href="/">강의 정보</a>
+    </figure>
+
+    <h2>텍스트 링크</h2>
+    <!-- 새 창에서 띄우기 : target 속성 사용. default는"_self" // 엄격한 DTD에서는 타겟 허용X! 5는 다 가능-->
+    <!-- _blank <-새 창에서 띄움 // blank(_빼먹음) <-띄워져 있는 새 창에서 띄움. 
+     blank라는 창을 찾아서 없으면 새로 띄우는 거고 있으면 있던 blank에 띄우는 것!-->
+    <a href="https://bootcamp.likelion.net/" target="_blank"
+      >멋쟁이 사자처럼 부트캠프</a
+    >
+    <br />
+    <!-- "글로벌 속성(=global attribute)" 모든 태그에 붙일 수 있는 속성
+      ex)class, id, style, title, data-*.. -->
+    <a
+      href="https://naver.com"
+      title="네이버 사이트로 이동합니다! (새창)"
+      target="_blank"
+      rel="noopener noreferrer"
+      >네이버</a
+    >
+    <!-- noopener <- 보안을 위해 필요한 옵션! blank 사용 시 필수 -->
+
+    <br />
+    <h2>이미지 링크</h2>
+    <a href="https://www.apple.com/"
+      ><img src="/src/assets/apple/apple_watch.jpeg" alt="애플워치" width="200"
+    /></a>
+    <h2>PDF 링크</h2>
+    <a
+      href="/src/assets/pdf/google-seo-guide-ko.pdf"
+      download="google-seo-guide-ko.pdf"
+      >구글 SEO 가이드</a
+    >
+    <br />
+
+    <h2>전화번호 또는 이메일 주소로 하이퍼 링크</h2>
+    <!-- ▼맘대로 메일앱 띄우는 데에 대한 불만이 생겨서 요새는 많이 쓰지 않음 -->
+    <a href="mailto:seulbinim@gmail.com?subject=문의사항"
+      >seulbinim@gmail.com</a
+    >
+
+    <br />
+    <a href="tel:+821023456789">고객센터 010-2345-6789</a>
+  </body>
+</html>
