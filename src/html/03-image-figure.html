@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이미지와 피규어</title>
+  </head>
+  <body>
+    <h1>이미지 삽입하깅</h1>
+    <h2>이미지 요소</h2>
+    <!-- ====================▼비트맵 이미지==================== -->
+    <img
+      src="/src/assets/food/cake.jpeg"
+      alt="Peace of Cake(한 조각의 평화) = 밀크레이프, 수플레티즈,. 초코 티라미슈, 데블스 초코"
+    />
+    <!--alt는 이미지에 담긴 내용을 모두 담을 수 있도록 노력해서 쓸 것, '로고' 이런 거 지양-->
+    <br />
+    <!--line break : 줄 바꿈 태그(빈 요소)-->
+
+    <section style="width: 600px">
+      <marquee><b>맛있겠다</b></marquee>
+    </section>
+    <img
+      src="/src/assets/food/icecream.webp"
+      alt="벤엔제리스 파인트 아이스크림"
+    />
+    <!-- ※webp / : 차세대 이미지. 기존 이미지 파일에 비해 용량이 매우 작음-->
+    <!-- ====================▲비트맵 이미지==================== -->
+
+    <!-- src/alt는 img태그의 필수 속성임.  ※alt : 이미지를 볼 수 없는 환경 대체 텍스트(이미지 설명). 이미지 그 자체를 설명하기보다는 맥락을 고려해서 입력해야 함 EX_하트이미지:찜하기 이런 느낌 -->
+
+    <!-- =====================▼벡터 이미지===================== -->
+    <br />
+    <img
+      src="/src/assets/svg/chitchat.svg"
+      alt="찜하기"
+      width="50"
+      height="50"
+    />
+    <!--크기 조절// 주로 css에서 조정하나 성능 관점에서는 마크업(html)에 지정해주는 게 훨씬 좋음! 마크업에서는 숫자만 적으면 px로 이해.-->
+    <svg
+      class="h-12 w-12"
+      viewBox="0 0 40 40"
+      xmlns="http://www.w3.org/2000/svg"
+      width="50"
+      height="50"
+    >
+      <title>1대1 채팅</title>
+      <!--img의 alt => svg 사용 시 title로 작성 //aria-label은 "상호작용"되는 요소에 labeling할 때 사용-->
+      <!-- button 안에 svg 들어갈 때는 svg 혹은 button에 aria-label 사용 가능 (상호작용 되는 요소에만!) -->
+      <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="a">
+          <stop stop-color="#ff0000" offset="0%"></stop>
+          <stop stop-color="#ffffff" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="b">
+          <stop stop-color="#ff0000" offset="0%"></stop>
+          <stop stop-color="#ffffff" offset="100%"></stop>
+        </linearGradient>
+      </defs>
+      <g fill="none" fill-rule="evenodd">
+        <path
+          d="M28.872 22.096c.084.622.128 1.258.128 1.904 0 7.732-6.268 14-14 14-2.176 0-4.236-.496-6.073-1.382l-6.022 2.007c-1.564.521-3.051-.966-2.53-2.53l2.007-6.022A13.944 13.944 0 0 1 1 24c0-7.331 5.635-13.346 12.81-13.95A9.967 9.967 0 0 0 13 14c0 5.523 4.477 10 10 10a9.955 9.955 0 0 0 5.872-1.904z"
+          fill="url(#a)"
+          transform="translate(1 1)"
+        ></path>
+        <path
+          d="M35.618 20.073l2.007 6.022c.521 1.564-.966 3.051-2.53 2.53l-6.022-2.007A13.944 13.944 0 0 1 23 28c-7.732 0-14-6.268-14-14S15.268 0 23 0s14 6.268 14 14c0 2.176-.496 4.236-1.382 6.073z"
+          fill="url(#b)"
+          transform="translate(1 1)"
+        ></path>
+        <path
+          d="M18 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM24 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM30 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
+          fill="#FFF"
+        ></path>
+      </g>
+    </svg>
+    <!-- =====================▲벡터 이미지===================== -->
+
+    <h2>피규어 요소</h2>
+    <!-- figure:캡션을 지정할 수 있는 컨테이너(안에 이미지,비디오, 표.. 뭐든 들어가도 ㄱㅊ) -->
+    <!-- figcaption:컨테이너 안의 컨텐츠에 대한 설명 -->
+    <!-- caption 있다고 alt 비워두면 SEO(검색 엔진 최적화) 관점에서 떨어짐 -->
+    <figure>
+      <img src="/src/assets/drama/good-partner-narrow.webp" alt="굿파트너" />
+      <figcaption>드라마 굿파트너 속 장나라</figcaption>
+    </figure>
+
+    <figure>
+      <img
+        src="/src/assets/drama/culinary-class-wars-narrow.jpg"
+        alt="요리 계급 전쟁 - 흑백요리사"
+        width="284"
+        height="400"
+        loading="lazy"
+      />
+      <figcaption>넷플릭스 흑백요리사</figcaption>
+    </figure>
+    <br />
+    <figure>
+      <img
+        src="/src/assets/drama/mon-friend-son-narrow.webp"
+        alt="엄마 친구 아들"
+        width="284"
+        height="400"
+      />
+      <figcaption>티빙에서 시청 - 엄마 친구 아들</figcaption>
+    </figure>
+  </body>
+</html>
