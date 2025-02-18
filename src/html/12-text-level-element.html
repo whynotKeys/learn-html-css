@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>텍스트 레벨 요소</title>
+  </head>
+  <body>
+    <h1>텍스트 레벨 요소</h1>
+    <!-- 아래첨자(sup)와 위첨자(sub) -->
+    <div>H<sub>2</sub>SO<sup>4</sup></div>
+    <!-- 축약어 : abbr// title 속성 넣으면 커서 올렸을 때 tooltip으로 표시 됨-->
+    <div>
+      <abbr title="점심메뉴추천">점메추</abbr>
+      <abbr title="HyperText Markup Language">HTML</abbr>
+    </div>
+    <!-- 날짜 및 시간 정보 : time// datetime속성이 시간 정보를 지정해줌 -->
+    <div>
+      <time datetime="2025-02-18T10:27:39">2025년 2월 18일</time>
+      <div>멋사 프론트엔드 13기<time datetime="2025-02-05"> 시작일</time></div>
+    </div>
+    <!-- 취소 정보 : s -->
+    <div>
+      정상가: <s>100,000원</s>
+      할인가: 9,900원
+    </div>
+    <!-- 저작권 정보 : small -->
+    <small>copyright &copy; Likelion Bootcamp 2025</small>
+    <!-- 하이라이트 정보 : mark -->
+    <div>멋쟁이 사자처럼 프론트엔드 부트캠프 <mark>13기</mark></div>
+  </body>
+</html>
