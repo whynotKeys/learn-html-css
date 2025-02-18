@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form (input 요소)</title>
+  </head>
+  <body>
+    <h1>form 관련 요소</h1>
+    <h2>input 요소</h2>
+    <!-- 한 줄 입력서식 -->
+    <!-- action : submit으로 가는 곳 (현재 비워둠) -->
+    <!-- fieldset은 필수 입력 항목/선택 입력 항목처럼 연관있는 항목끼리 묶어두는 용도
+        요새는 fieldset+legend 생략하기도 함(4는 생략, XHTML는 필수) -->
+    <form action="/">
+      <fieldset>
+        <legend>폼 서식</legend>
+        <!-- 모든 입력폼은 1대1로 대응하는 label을 가져야함!! 한 세트 -->
+        <!-- input에 들어가는 type이 뭐냐에 따라 서식 종류 달라짐 -->
+        <div>
+          <label for="userName">이름을 넣거라</label>
+          <input type="text" id="userName" />
+        </div>
+        <div>
+          <label for="userPwd">비밀번호를 넣거라</label>
+          <input type="password" id="userPwd" />
+        </div>
+        <div>
+          <label for="likelionSearch">검색해보거라</label>
+          <input type="search" id="likelionSearch" />
+        </div>
+      </fieldset>
+    </form>
+  </body>
+</html>
