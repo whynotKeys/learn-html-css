@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>picture, source 요소</title>
+  </head>
+  <body>
+    <!-- srcset, sizes 속성 -->
+    <!-- 1. 이렇게만 하면 비트맵 이미지 속성 상 확대했을 때 깨짐! -->
+    <!-- <h1>일반 이미지 태그</h1>
+    <img src="/src/assets/logo/netflix@1x.png" alt="넷플릭스" />
+
+    <br /><br /><br /> -->
+
+    <!-- 2. 그래서 이렇게 사이즈별로~ -->
+    <h1>srcset을 사용한 이미지 태그</h1>
+    <img
+      srcset="
+        /src/assets/logo/netflix@1x.png 1x,
+        /src/assets/logo/netflix@2x.png 2x
+      "
+      src="/src/assets/logo/netflix@1x.png"
+      alt="넷플릭스"
+    />
+
+    <br /><br /><br />
+    <!-- 이미지 형식 -->
+    <img
+      src="/src/assets/logo/netflix@1x.png"
+      srcset="/src/assets/logo/netflix@1x.webp"
+      alt="넷플릭스"
+    />
+  </body>
+</html>
