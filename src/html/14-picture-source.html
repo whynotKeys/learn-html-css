@@ -31,5 +31,43 @@
       srcset="/src/assets/logo/netflix@1x.webp"
       alt="넷플릭스"
     />
+
+    <h2>W Descriptor 예시</h2>
+    <!-- picture요소 : 이미지를 담기 위한 컨테이너. picture태그 안에는 반드시 이미지가 있어야 함 -->
+    <!-- figure요소와는 조금 다름 : figure는 이미지를 담기 위한 용도가 아님
+         figure 안에 picture 넣고 figcaption에 설명하는 식으로 사용함 -->
+    <!-- srcset 옆에 w는 원본크기 들어가는 것. +1부터 다음 사이즈 이미지가 적용되는 식 -->
+    <!-- 100vw <- 100% 같은 것 -->
+
+    <!-- 
+        <picture>
+      <img
+        src="/src/assets/rwd/small-550.jpg"
+        alt=""
+        srcset="
+          /src/assets/rwd/small-550.jpg    550w,
+          /src/assets/rwd/medium-1024.jpg 1024w,
+          /src/assets/rwd/large-1600.jpg  1600w
+          /src/assets/rwd/normal-1920.jpg  1920w
+        "
+        sizes="(max-width: 768px) 55px, 100vw"
+      />
+    </picture> -->
+    <!-- source로 이미지 넣고 대안들을 준비 : 반응형으로 설계 -->
+    <picture>
+      <source
+        srcset="/src/assets/rwd/small-550.jpg 550w"
+        media="(max-width: 500px)"
+      />
+      <source
+        srcset="/src/assets/rwd/medium-1024.jpg 1024w"
+        media="(max-width: 768px)"
+      />
+      <source
+        srcset="/src/assets/rwd/large-1600.jpg 1600w"
+        media="(max-width: 1280px)"
+      />
+      <img src="/src/assets/rwd/normal-1920.jpg" alt="" />
+    </picture>
   </body>
 </html>
