@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iframe, object 요소</title>
+  </head>
+  <body>
+    <!-- iframe을 활용하여 비디오 삽입하기 -->
+    <!-- allowfullscreen 안 넣으면 전체화면 불가 / referrer  -->
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/fUcIe7-2zxw?si=BzVB_WrIGTqu1Oog"
+      title="웹접근성이란 - AOA11Y Youtube channel"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>
+    <br />
+    <!-- object 태그로 pdf 파일 넣기 -->
+    <figure>
+      <object
+        type="application/pdf"
+        data="/src/assets/pdf/wai-aria.pdf"
+        width="600"
+        height="440"
+      ></object>
+      <figcaption>WAI-ARIA</figcaption>
+    </figure>
+
+    <h2>히히 웡카</h2>
+    <!-- 유튜브 다른 것도 가져와 봄 -->
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/Dbml-Ru7hMY?si=UrSAjiyWefMHuVCW"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>
+  </body>
+</html>
