@@ -12,6 +12,7 @@
     <!-- action : submit으로 가는 곳 (현재 비워둠) -->
     <!-- fieldset은 필수 입력 항목/선택 입력 항목처럼 연관있는 항목끼리 묶어두는 용도
         요새는 fieldset+legend 생략하기도 함(4는 생략, XHTML는 필수) -->
+    <!-- form에 method속성: get/post -->
     <form action="/">
       <fieldset>
         <legend>폼 서식</legend>
@@ -19,16 +20,37 @@
         <!-- input에 들어가는 type이 뭐냐에 따라 서식 종류 달라짐 -->
         <div>
           <label for="userName">이름을 넣거라</label>
-          <input type="text" id="userName" />
+          <!-- required:논리속성 필수 입력 항목으로 만들어줌 -->
+          <!-- aria-required : 스크린 리더가 필수 입력 서식으로 읽어주게 함
+                (input인 경우 required가 있으니 굳이 안 써도 ㄱㅊ. div일 때는 꼭 필요) -->
+          <!-- placeholder로 입력에 대한 참고사항 안내. 라벨 대신 사용하지는 말것!! -->
+          <input
+            type="text"
+            name="userName"
+            id="userName"
+            required
+            placeholder="예시_한지우"
+          />
         </div>
         <div>
           <label for="userPwd">비밀번호를 넣거라</label>
-          <input type="password" id="userPwd" />
+          <input
+            type="password"
+            name="userPwd"
+            id="userPwd"
+            required
+            placeholder="※ 8자리 이상 입력"
+          />
         </div>
         <div>
           <label for="likelionSearch">검색해보거라</label>
-          <input type="search" id="likelionSearch" />
+          <input type="search" name="likelionSearch" id="likelionSearch" />
         </div>
+        <div>
+          <label for="userEmail">이메일</label>
+          <input type="email" name="userEmail" id="userEmail" required />
+        </div>
+        <input type="submit" value="전송" />
       </fieldset>
     </form>
   </body>
