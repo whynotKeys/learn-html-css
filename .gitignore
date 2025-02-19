@@ -216,3 +216,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/node,windows,osx,visualstudiocode
+
+html_study.md
+src/html/sumup-20250217.html
