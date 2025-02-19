@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dialog 요소, popover 속성</title>
+    <style>
+      /* 태그명.클래스이름 => 이 태그의 요 클래스에 해당하는 부분의 css 정의 */
+      dialog.panel-dialog::backdrop {
+        background: linear-gradient(to bottom, #ffefba, #ffcffd);
+      }
+    </style>
+    <script type="module">
+      // DOM 선택 부분
+      const showDialogButton = document.querySelector('.show-dialog');
+      const closeDialogButton = document.querySelector('.close-dialog');
+      const panelDialog = document.querySelector('.panel-dialog');
+
+      // Function implementation
+      const showDialog = () => panelDialog.showModal();
+      const closeDialog = () => panelDialog.close();
+
+      // Event binding
+      showDialogButton.addEventListener('click', showDialog);
+      closeDialogButton.addEventListener('click', closeDialog);
+    </script>
+  </head>
+  <body>
+    <!-- aria-modal : 요게 동시에 다른 모달 만질 수 있는 지 결정
+    모달 뒤에 화면 까매지는 거 dimed라고 표현 -->
+    <h1>dialog 요소</h1>
+    <div class="dialog-area">
+      <!-- button에서 타입 생략하면 기본은 submit // submit/reset/button 3개임 -->
+      <button type="button" class="show-dialog">모달창 보기</button>
+      <!-- open이라는 속성 안 넣으면 보일 수 없음 -->
+      <dialog class="panel-dialog" aria-labelledby="event">
+        <h2 id="event">깜짝 혜택</h2>
+        <p>
+          올바로 작동하지 않는다고 걱정하지 마라. 만일 모든 게 잘 된다면, 굳이
+          당신이 일할 이유가 없다.(Mosher’s Law of Software Engineering)
+        </p>
+        <button type="button" class="close-dialog">닫기</button>
+      </dialog>
+    </div>
+
+    <br /><br />
+
+    <h1>popover 속성</h1>
+    <button type="button" popovertarget="popoverContent" class="button-popover">
+      팝오버 보기
+    </button>
+    <!-- popover 속성 줘야 작동 -->
+    <div popover id="popoverContent">
+      <p>팝오버 내용</p>
+    </div>
+  </body>
+</html>
