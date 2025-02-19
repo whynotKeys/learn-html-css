@@ -8,17 +8,17 @@
   <body>
     <h1>form 관련 요소</h1>
     <h2>input 요소</h2>
-    <!-- 한 줄 입력서식 -->
     <!-- action : submit으로 가는 곳 (현재 비워둠) -->
     <!-- fieldset은 필수 입력 항목/선택 입력 항목처럼 연관있는 항목끼리 묶어두는 용도
         요새는 fieldset+legend 생략하기도 함(4는 생략, XHTML는 필수) -->
-    <!-- form에 method속성: get/post -->
+    <!-- form에 action: 제출 시 가는 곳. method속성: get/post -->
     <form action="/">
       <fieldset>
         <legend>폼 서식</legend>
         <!-- 모든 입력폼은 1대1로 대응하는 label을 가져야함!! 한 세트 -->
         <!-- input에 들어가는 type이 뭐냐에 따라 서식 종류 달라짐 -->
         <div>
+          <!-- ☆text타입-> 한 줄 입력서식 -->
           <label for="userName">이름을 넣거라</label>
           <!-- required:논리속성 필수 입력 항목으로 만들어줌 -->
           <!-- aria-required : 스크린 리더가 필수 입력 서식으로 읽어주게 함
@@ -30,8 +30,11 @@
             id="userName"
             required
             placeholder="예시_한지우"
+            maxlength="5"
+            minlength="3"
           />
         </div>
+        <!-- ☆비밀번호 입력 서식 -->
         <div>
           <label for="userPwd">비밀번호를 넣거라</label>
           <input
@@ -42,14 +45,79 @@
             placeholder="※ 8자리 이상 입력"
           />
         </div>
+        <!-- ☆검색 입력 서식 -->
         <div>
           <label for="likelionSearch">검색해보거라</label>
           <input type="search" name="likelionSearch" id="likelionSearch" />
         </div>
+
+        <!-- ☆이메일 입력 서식 -->
         <div>
           <label for="userEmail">이메일</label>
           <input type="email" name="userEmail" id="userEmail" required />
         </div>
+        <!-- ☆tel 타입 입력 서식 -->
+        <!-- tel 타입: 웹에서는 티가 안 나지만, 모바일 환경에서는 숫자 키패드만 보여줌 -->
+        <div>
+          <label for="userPhone">연락처</label>
+          <input type="tel" name="userPhone" id="userPhone" required />
+        </div>
+        <!-- ☆체크박스 서식 -->
+        <!-- checkbox: checked 속성으로 미리 선택 가능-->
+        <div>
+          <input
+            type="checkbox"
+            value="html"
+            name="classLikelion"
+            id="classHtml"
+            checked
+          />
+          <label for="classHtml">HTML</label>
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            value="css"
+            name="classLikelion"
+            id="classCss"
+          />
+          <label for="classCss">CSS</label>
+        </div>
+        <div>
+          <input type="checkbox" value="js" name="classLikelion" id="classJs" />
+          <label for="classJs">JS</label>
+        </div>
+        <!-- ☆라디오 서식 -->
+        <div>
+          <input
+            type="radio"
+            value="classRoom1"
+            name="classRoom"
+            id="classLikelion1"
+            checked
+          />
+          <label for="classLikelion1">회고 1팀</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            value="classRoom2"
+            name="classRoom"
+            id="classLikelion2"
+          />
+          <label for="classLikelion2">회고 2팀</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            value="classRoom3"
+            name="classRoom"
+            id="classLikelion3"
+          />
+          <label for="classLikelion3">회고 3팀</label>
+        </div>
+
+        <!-- ☆전송 버튼 -->
         <input type="submit" value="전송" />
       </fieldset>
     </form>
