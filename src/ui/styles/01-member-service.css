@@ -1,0 +1,52 @@
+/* 클래스 선택자 */
+/* 배경색상 */
+/* font-variant 속성으로 대문자 변환 가능하나, 크기가 너무 작아져서 text-transform 사용 */
+
+.member-service {
+  background-color: rgb(167, 245, 255);
+  /* font-variant: small-caps; */
+  text-transform: uppercase;
+  /* font 단축 속성을 사용하여 글자 크기와 글꼴을 지정 */
+  font: 1.125rem, suit, sans-serif;
+}
+
+/* 태그 선택자 */
+/* 웹 브라우저 스타일 (밑줄) 재정의 */
+/* 웹브라우저 링크 스타일(색상)을 재정의 (상속) */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* a요소이면서 가상요소 선택자 */
+a::before {
+  content: '| ';
+}
+
+a:first-child::before {
+  content: '';
+}
+
+/* a:not(:first-child)::before {
+  content: ':';
+  } */
+/* ---------------- */
+
+/* 2번째 a부터만 적용 요런 것도 가능 */
+/* a:nth-child(n+2)::before{
+  background-color: pink;
+  content: ':';
+} */
+
+/* 클래스로도 똑같이 할 수 있음 (더 권장) */
+/* .item{
+  text-decoration: none;
+  color: inherit;
+}
+
+.item.first::before{  
+  content: '';
+}
+.item::before{  
+  content: '| ';
+} */
