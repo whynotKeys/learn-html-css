@@ -218,4 +218,6 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/node,windows,osx,visualstudiocode
 
 html_study.md
+html_study_pre.md
+form(input).md
 src/html/sumup-20250217.html

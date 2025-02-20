@@ -1,0 +1,89 @@
+body {
+  background-color: #ffc;
+}
+
+/* 태그 선택자 */
+/* p는 focus를 받을 수 없어서 넣어도 안됨 
+ 하지만 tabindex 속성을 넣으면 focus할 수 있게 됨! (좋은 건 ㄴ)*/
+p {
+  color: red;
+
+  &:hover {
+    background-color: skyblue;
+  }
+
+  &:focus {
+    border: 19px solid red;
+  }
+}
+
+/* 클래스 선택자 -> .*/
+.like {
+  color: green;
+}
+/* 이것도 동일하긴 함(손 많이 가서 위처럼 사용)
+[class='like'] {
+  color: green;
+} */
+
+/* 아이디 선택자 -> #*/
+#lion {
+  color: plum;
+}
+/* 이것도 동일하긴 함(손 많이 가서 위처럼 사용)
+[id='lion'] {
+  color: green;
+} */
+
+/* 속성 선택자 -> []*/
+[title] {
+  color: blueviolet;
+}
+/* 이런 식으로 특정 속성이 특정한 값을 가진 것만 잡을 수도 있음 */
+[title='lion'] {
+  color: green;
+}
+/* ^= -> ""로 시작하는 것  */
+a[href^='https'] {
+  text-decoration: none;
+}
+/* ^= -> ""로 끝나는 것  */
+a[href$='pdf'] {
+  background-color: violet;
+}
+/* 가상~ : 내가 임의로 정하는 거 아니고 이미 정해져 있음 */
+/* 가상 클래스 선택자 -> :*/
+/* ▼ 한 번도 방문하지 않으면 */
+a:link {
+  color: green;
+  background-color: red;
+}
+
+/* ▼ 방문한 이후에는 */
+a:visited {
+  color: olive;
+  background-color: aqua;
+}
+
+a:hover {
+  color: yellow;
+}
+
+a:focus {
+  color: red;
+}
+
+a:active {
+  color: chartreuse;
+  background-color: #000;
+}
+
+/* 가상 요소 선택자 -> ::*/
+/* 가상 요소 선택자 중 before, after는 반드시 content를 가져야 함 */
+h1::before {
+  content: '멋싸싸';
+}
+
+h1::after {
+  content: '133기';
+}
