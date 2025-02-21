@@ -1,0 +1,18 @@
+.likelion {
+  .likelion__list {
+    list-style: none;
+
+    /* 클래스를 고대로 가져와서 붙인다고 생각하면 됨  */
+    &:hover {
+      background-color: pink;
+    }
+
+    .likelion__item {
+      color: aqua;
+
+      .likelion__link {
+        color: inherit;
+      }
+    }
+  }
+}
