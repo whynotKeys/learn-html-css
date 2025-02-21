@@ -1,31 +1,43 @@
 /* 클래스 선택자 */
 /* 배경색상 */
 /* font-variant 속성으로 대문자 변환 가능하나, 크기가 너무 작아져서 text-transform 사용 */
-
+/* font-size를 0으로 두고 상속시켜서 공백문자가 크기를 갖지 않도록 상속 */
 .member-service {
-  background-color: rgb(167, 245, 255);
+  background-color: rgb(255, 221, 253);
   /* font-variant: small-caps; */
   text-transform: uppercase;
   /* font 단축 속성을 사용하여 글자 크기와 글꼴을 지정 */
-  font: 1.125rem, suit, sans-serif;
+  /* font: 0.875rem, suit, sans-serif; */
+  font-size: 0;
+  line-height: 1.5;
+}
+
+.item {
+  text-decoration: none;
+  color: inherit;
+  /* padding: 0 8px; */
+  background-color: pink;
+  font-size: 0.875rem;
 }
 
 /* 태그 선택자 */
 /* 웹 브라우저 스타일 (밑줄) 재정의 */
 /* 웹브라우저 링크 스타일(색상)을 재정의 (상속) */
-a {
+/* a {
   text-decoration: none;
   color: inherit;
-}
+} */
 
 /* a요소이면서 가상요소 선택자 */
-a::before {
-  content: '| ';
+/* a::before {
+  content: ':';
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 a:first-child::before {
   content: '';
-}
+} */
 
 /* a:not(:first-child)::before {
   content: ':';
@@ -39,14 +51,34 @@ a:first-child::before {
 } */
 
 /* 클래스로도 똑같이 할 수 있음 (더 권장) */
-/* .item{
-  text-decoration: none;
-  color: inherit;
-}
-
+/*
 .item.first::before{  
   content: '';
 }
 .item::before{  
   content: '| ';
 } */
+
+/* UL요소를 활용한 구조 예시(실습) rgb(255, 216, 252);*/
+/*  text-align -> 텍스트 정렬 */
+.member-link {
+  text-align: center;
+  background-color: rgb(156, 224, 255);
+  list-style-type: none;
+  li {
+    display: inline-block;
+    * {
+      display: inherit;
+      font-size: 0.875rem;
+    }
+  }
+  a {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 8px;
+    background-color: rgb(213, 176, 255);
+  }
+  span {
+    margin: 0 8px;
+  }
+}

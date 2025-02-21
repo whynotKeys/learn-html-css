@@ -1,0 +1,56 @@
+/* CSS 박스모델 */
+/* 박스의 테두리 설정(: Border) */
+/* 안쪽 여백 설정 - padding */
+/* 바깥쪽 여백 설정 - margin */
+/* border-width는 border-top/right/bottom/left-width 로 각 영역마다 다르게 설정 가능*/
+/* -> shortand로 
+  border-width: 5px 10px 15px 20px; 요렇게도 쓸수있음 */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties 참고(내가찾) */
+/* 박스 사이징 - box-sizing: 대부분의 기본값 content-box(컨텐츠 내용만 포함)*/
+/* box-sizing: border-box; -> 지정한 width에 padding/border가 포함됨 
+                             = 패딩값+보더값+컨텐츠너비 = width값 일케*/
+/* https://developer.mozilla.org/ko/docs/Web/CSS/width MDN 참고링크*/
+.like {
+  /* border-width: 5px;
+  border-style: solid;
+  border-color: green; */
+  border: 5px solid green;
+  box-sizing: border-box;
+  /* padding: 5px 10px 15px 20px; */
+  padding: 20px;
+  width: 150px;
+  margin: 50px;
+
+  div {
+    background-color: yellow;
+  }
+}
+
+.bootcamp {
+  border: 1px solid purple;
+  padding: 0 100px;
+}
+
+/* margin: auto로 하면 여백을 자동할당해서 가눙데에 자리잡게 함 */
+/* css는 눈으로만 보고 판단하면 안됨. 너비 100%와 auto는 보기에는 같아보이지만 뜯어보면 다름
+※ auto는 ->부모 컨테이너 블록 크기에 따라 결정 <<<맞나? 헷갈리네 */
+/* width, height 속성으로 크기 지정 */
+/* inline 요소는 크기 지정 불가-> block으로 바꿔야 가능 */
+/* inline-block으로 하면 요소 내 줄바꿈하지않음! */
+.lion {
+  display: block;
+  /* width: 300px; */
+  border: 5px solid red;
+  padding: 10px;
+  margin: 20px 0;
+}
+/* auto/음수 값은 margin만 사용 가능. padding은 사용 불가!!
+Normal flow에서 margin은 상하로(좌우는XX) 인접한 박스가 block인 경우 마진이 겹칠 수 있음(margin collapsing) 
+flex 혹은 grid박스모델에서는 마진겹침 발생X. */
+
+.treasure {
+  margin-bottom: 50px;
+  width: 300px;
+  /* margin-inline: auto; */
+  margin-left: -50px;
+}

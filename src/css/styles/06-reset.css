@@ -1,0 +1,14 @@
+/* normalize 파일 연결하는 방법 - import
+ : css파일이 다른 css를 읽어들이는 방식 */
+/* import : url함수 쓰는 방식과 안쓰는 모던방식으로 2가지 사용 가능 */
+/* @import '/src/common/normalize.css'; */
+/* @import '/src/common/modern-reset.css'; */
+/* @import '/src/common/mini-reset.css'; */
+@import '/src/common/best-reset.css';
+
+/* best-reset에서는 ul에 role="list" 유무에 따라 불렛 안 보여야하는데 
+   마진/패딩이 0이라 그 부분이 안 보여서 잠시 적용 */
+ul {
+  margin-left: 50px;
+  padding-left: 50px;
+}
