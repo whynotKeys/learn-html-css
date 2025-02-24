@@ -1,0 +1,28 @@
+body {
+  /* 배경 색상 */
+  background-color: hsl(180, 50%, 80%);
+  /* 배경 이미지 */
+  background-image: url(/src/assets/images/rabbit.png);
+  /* 배경이미지 반복 설정 가능. 이니셜 값은 repeat */
+  background-repeat: no-repeat;
+  /* 배경 이미지 위치 (일반 position이랑은 상관 없음)_ 단축표기법(shorthand) 사용)*/
+  /* px,rem 등의 단위를 썼을 때는 왼쪽 상단 꼭지점 기준으로 맞춰지고 %로 지정 시 상자의 해당 지정과 이미지의 해당지점을 기준으로 맞춰짐 */
+  background-position: 50% 0;
+  /* body 요소의 최소 높이 지정 */
+  min-height: 100vh;
+  /* 스크롤했을 때 따라올 지, 고정되어있을 지 */
+  background-attachment: fixed;
+  /* cover(가로 보존)/contain(세로 보존) 바로 사이즈 지정할 수도 있음 가로 세로*/
+  background-size: 200px 300px;
+  /* 단축표기법으로 줄여서 선언 */
+  /* 배경이미지는 먼저 선언한 게 앞으로 나옴. 나중에 선언할 수록 밑에(뒤에) 쌓임. - 본문 position이랑은 반대 */
+  background:
+    url(/src/assets/images/cloud.png) no-repeat 0 100px fixed,
+    url(/src/assets/images/sun.png) no-repeat 150px 50px /150px 150px fixed,
+    url(/src/test_img/precious.png) no-repeat 500px 300px /200px 200px,
+    url(/src/test_img/surprised_y.png) no-repeat 500px 300px /200px 200px fixed,
+    url(/src/test_img/precious.png) no-repeat 100px 300px /200px 200px fixed,
+    url(/src/test_img/smile_y.png) no-repeat 100px 300px /200px 200px fixed,
+    linear-gradient(red, green),
+    pink;
+}
