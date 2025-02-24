@@ -1,0 +1,111 @@
+/* 전역 변수 정의(global variable) */
+/* 커스텀 프로퍼티 : --요렇게 시작 */
+/* 내가 설정하는 커스텀 프로퍼티의 상속여부 결정(inherit) */
+@property --text-color {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: orange;
+}
+
+:root {
+  /* 색상 팔레트 */
+  --white: #fff;
+  --black: #000000;
+  --red: #ff9696;
+  --green: rgb(152, 255, 152);
+  --blue: rgb(128, 128, 255);
+  --orange: rgb(255, 204, 108);
+  --yellow: rgb(255, 255, 146);
+  --light-blue: rgb(131, 255, 255);
+
+  /* 주요 색상 */
+  --primary-color: var(--orange);
+  --secondary-color: var(--light-blue);
+  --accect-color: var(--yellow);
+  --border-color: var(--red);
+
+  /* size */
+  --small: 0.75rem;
+  --medium: 0.875rem;
+  --default: 1rem;
+  --large: 1.125rem;
+}
+
+/* 잘못 사용된 예제 & 잘된 사용 예제 */
+/* h1 {
+background-color: --secondary-color; 
+background-color: var(--secondary-color);
+} */
+
+/* ※ 전역 변수보다 지역 변수가 우선순위가 높음 */
+.text-card-1 {
+  /* 지역 변수 정의(local variable) */
+  /* --secondary-color:#ff98e9; */
+  --bg-color: var(--green);
+  --border-color: var(--red);
+
+  /* --secondary-color 속성이 없을 때 #2ecc71가 적용되도록 설정  */
+  h1 {
+    background-color: var(
+      --bg-color,
+      #2ecc71
+    ); /* 만약 변수의 이름이 변경됐을때 2순위 색을 지정하는 것 */
+  }
+
+  p {
+    border-width: 10px;
+    border-style: solid;
+    border-color: var(--border-color);
+  }
+}
+
+.text-card-2 {
+  --bg-color: var(--blue);
+  --border-color: var(--green);
+
+  h1 {
+    background-color: var(--bg-color, #2ecc71);
+  }
+
+  p {
+    border-width: 10px;
+    border-style: solid;
+    border-color: var(--border-color);
+  }
+}
+
+.container {
+  color: var(--text-color);
+
+  .parent {
+    --text-color: blue;
+
+    .child {
+      color: var(--text-color);
+    }
+  }
+}
+
+.wrapper {
+  --font-size: var(--small);
+  --bg-color: var(--green);
+  --text-color: var(--red);
+
+  button {
+    font-size: var(--font-size, 16px);
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+  }
+
+  button.close {
+    --font-size: var(--default);
+  }
+
+  button.popup {
+    --text-color: var(--blue);
+  }
+
+  button.info {
+    --bg-color: var(--white);
+  }
+}

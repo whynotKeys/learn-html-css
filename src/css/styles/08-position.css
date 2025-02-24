@@ -1,0 +1,52 @@
+@import '/src/common/mini-reset.css';
+/* position relative일 때만top right bottom left 쓸 수 있음 */
+
+body {
+  margin: 50px;
+}
+
+/* 부모의 높이를 설정하지 않으면 auto라서 자식이 커지면 같이 커짐*/
+/* position:absolute 하는 순간 블록 요소로 인식 됨 */
+.lion {
+  border: 1px solid black;
+  background-color: black;
+
+  .like {
+    border: 1px solid red;
+    background-color: yellow;
+    position: relative;
+    height: 50px;
+    top: -5px;
+    left: -5px;
+  }
+}
+
+h6 {
+  background-color: pink;
+}
+/* position: absolute;-> 원래 있던 자리에 떠있으면서 아래 있던 애가 올라옴 */
+/* h3에 클래스를 줘서 글자만 인식해서 글자만 파래졌을 뿐 block 요소임 */
+/* position으로 위치 겹쳐지면 마지막에 마크업한 녀석이 가장 앞으로 보임 */
+/* 자기자신이 포함된 컨테이너요소의 position이 static이 아닐 떄만 작용. 
+  부모가 static->무시, 조부모도 static-> 무시 끝까지 안 나오면 바디까지 가서 body 기준으로 위치 정의 */
+.box {
+  position: relative;
+  border: 1px solid blue;
+  height: 100px;
+}
+/* top/left/right/left 0으로 두면 부모영역에 맞춰짐 */
+.bootcamp {
+  background-color: aqua;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* .cover {
+  border: 1px solid black;
+  width: 600;
+  height: 300;
+  background-color: brown;
+} */

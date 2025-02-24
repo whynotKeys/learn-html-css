@@ -31,11 +31,11 @@
   padding: 0 100px;
 }
 
-/* margin: auto로 하면 여백을 자동할당해서 가눙데에 자리잡게 함 */
+/* margin: auto로 하면 여백을 자동할당해서 가운데에 자리잡게 함 */
 /* css는 눈으로만 보고 판단하면 안됨. 너비 100%와 auto는 보기에는 같아보이지만 뜯어보면 다름
 ※ auto는 ->부모 컨테이너 블록 크기에 따라 결정 <<<맞나? 헷갈리네 */
 /* width, height 속성으로 크기 지정 */
-/* inline 요소는 크기 지정 불가-> block으로 바꿔야 가능 */
+/* inline 요소는 width, height 지정 불가. 안에 글자가 있다면 line-height따라감 -> block으로 바꿔야 지정 가능 */
 /* inline-block으로 하면 요소 내 줄바꿈하지않음! */
 .lion {
   display: block;
