@@ -1,0 +1,42 @@
+@import '/src/common/theme.css';
+
+/* CSS의 display 속성으로 특정 영역 보이지 않게 */
+/* .mom-friend-son {
+  display: none;
+} */
+/* Float 사용하기 */
+.card {
+  background: var(--pastel-pink);
+  border: 1px solid green;
+
+  .thumbnail {
+    background: var(--pastel-yellow);
+    /* 안쪽 요소가 넘치면 맞춰서 영역을 가지게 됨 auto/scroll/hidden 중 하나 쓰면 됨 visible은 초기값*/
+    /* float으로 인해 부모 요소인 thumbnail이 인식하지 못하는 높이를 포함하도록 BFC를 생성 */
+    /* overflow: hidden; */
+
+    /* 요 방식으로 튀어나가는 게 안 보이는 문제를 해결할 수 있다 */
+    display: flow-root;
+
+    img {
+      /* position: relative;
+      right: -50px; */
+      float: left;
+      width: 100px;
+      /* 요소들의 정렬 기준을 가운데로 잡는 것! 이 속성은 인라인이나 인라인 블록에만 먹힘. 자식요소한테 직접 주면 됨 */
+      vertical-align: middle;
+      /* vertical-align: top; <-이미지 아래쪽 여백을 없애기 위한 트릭 */
+      /* display: block; <-이미지 아래쪽 여백을 없애기 위한 트릭*/
+    }
+  }
+
+  .subject {
+    background: var(--pastel-blue);
+  }
+  .content {
+    /* clear: both -> float의 효과를 해제하기 위해 사용할 수 있음 */
+    /* clear 속성을 block 요소에만 지정할 수 있음 */
+    clear: both;
+    background: var(--pastel-orange);
+  }
+}
