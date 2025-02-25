@@ -1,0 +1,61 @@
+@import '/src/common/modern-reset.css';
+/* 기본 형태는 남아있고 여백은 없어지는 느낌 */
+
+body {
+  font-family: SUIT, sans-serif;
+}
+
+/* em : 해당 요소의 글자크기 기준 <- 상속 이슈 있어서 font size 안 주면 혼란할 수 있음. 
+   rem : root 기준 */
+.card {
+  /* BFC - overflow:hidden, display:flow-root, float:left, position: absolute */
+  display: flow-root;
+  margin: 2em; /* 32px */
+  padding: 2em;
+  border: 1px solid #aaa;
+  border-radius: 0.5rem;
+  /* 각각의 각도를 지정할 수도 있다 */
+  /* border-radius: 0 50px 0 50px / 0 20px 0 20px; */
+
+  /* 제목 */
+  .subject {
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    span {
+      vertical-align: top;
+
+      &[lang='en'] {
+        font-size: 0.5em;
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
+
+  /* 이미지 */
+  .thumbnail {
+    --radius: 50%;
+
+    border: 1px solid #ccc;
+    float: left;
+    margin: 0.625em;
+    padding: 0.625em;
+    border-radius: var(--radius);
+    width: 120px;
+    shape-outside: circle(50%);
+
+    img {
+      width: 100%;
+      border-radius: inherit;
+      aspect-ratio: 1/1; /* 가로 세로 비율 1대 1로 해! 이미지에 줘야 함 */
+      object-fit: cover; /* contain은 세로에 맞게 가로 자르는 거 cover는 가로에 맞게 세로 자르는거 */
+      object-position: bottom;
+    }
+  }
+
+  /* 내용 */
+  .content {
+    margin-top: 0.625rem;
+  }
+}
