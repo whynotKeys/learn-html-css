@@ -1,0 +1,31 @@
+@import '/src/common/modern-reset.css';
+@import '/src/common/a11y.css';
+
+/* 모든 디바이스에 기본으로 적용될 배경색 - skyblue */
+/* 모든 디바이스에 글자크기를 유연하게 설정 - vw 단위 */
+/* clamp() 함수를 이용해서 글자크기를 유연하게 설정 가능 */
+body {
+  background: skyblue;
+  font-size: clamp(0.75rem, 2vw, 2rem);
+  /* 최소사이즈, 커지면서 적용될 사이즈 , 최대 사이즈*/
+
+  /* media 쿼리는 조건이 반드시 동반돼야 함 */
+  /* viewport 크기가 600 이상일 때 적용될 배경색 - pink */
+  /* break point = 600 */
+  @media (min-width: 600px) {
+    background: pink;
+  }
+  /* viewport 크기가 1200 이상일 때 적용될 배경색 - lime */
+  @media (min-width: 1200px) {
+    background: lime;
+  }
+}
+/* 조건에 and 연산자도 사용 가능 */
+@media (min-width: 600px) and (max-width: 800px) {
+}
+/* 가로보기 모드에서 적용될 배경색 - orange*/
+/* @media (orientation: landscape) {
+  body {
+    background: orange;
+  }
+} */

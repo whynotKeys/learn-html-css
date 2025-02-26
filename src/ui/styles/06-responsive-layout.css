@@ -1,0 +1,51 @@
+@import '/src/common/best-reset.css';
+@import '/src/common/theme.css';
+
+/* 반응형 레이아웃 */
+/* breakpoint : 768/1024 */
+
+/* 헤더 */
+.header {
+  background: var(--pastel-coral);
+  height: 10vh;
+}
+
+/* 내비게이션 */
+.navigation {
+  background: var(--pastel-green);
+  height: 15vh;
+}
+/* 메인 콘텐츠 및 사이드바 컨테이너 */
+.content-wrapper {
+  @media (min-width: 768px) {
+    display: flow-root;
+  }
+}
+/* 메인 콘텐츠 */
+.content {
+  background: var(--pastel-aqua);
+  height: 40vh;
+  /* rem으로 지정하는 게 좋으나 학습 시 직관적 목적으루 px 사용 */
+  @media (min-width: 768px) {
+    width: 50%;
+    height: 65vh;
+    float: left;
+  }
+}
+
+/* 사이드 바 */
+.sidebar {
+  background: var(--pastel-yellow);
+  height: 25vh;
+  @media (min-width: 768px) {
+    width: 50%;
+    height: 65vh;
+    float: left;
+  }
+}
+
+/* 푸터 */
+.footer {
+  background: var(--pastel-lavender);
+  height: 10vh;
+}
