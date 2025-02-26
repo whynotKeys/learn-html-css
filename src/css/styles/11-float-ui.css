@@ -44,7 +44,7 @@ body {
     border-radius: var(--radius);
     width: 120px;
     shape-outside: circle(50%);
-
+    /* border-radius & aspect-ratio & object-fit 3박자로 이미지 동그랗게 보이게 함 */
     img {
       width: 100%;
       border-radius: inherit;

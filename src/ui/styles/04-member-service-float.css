@@ -1,0 +1,110 @@
+/* body {
+  font-family: SUIT, sans-serif;
+}
+
+.example {
+  display: block;
+  position: relative;
+} */
+
+/* 멤버 서비스 */
+/* .member-service {
+  background: pink;
+  display: flow-root;
+
+  a {
+    text-transform: uppercase;
+    text-decoration: none;
+    margin: 1rem;
+    color: black;
+    float: left;
+  }
+
+  a:nth-child(n + 2)::before {
+    content: '|';
+    margin: 0 2em;
+  }
+} */
+
+/* 멤버 링크 */
+/* .member-link {
+  background: skyblue;
+  list-style-type: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: black;
+
+  li {
+    display: inline-block;
+
+    a {
+      text-transform: uppercase;
+      text-decoration: none;
+      margin: 1rem;
+      color: inherit;
+    }
+  }
+} */
+
+/* 스타일 초기화 */
+body *,
+body *::before,
+body *::after {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+li {
+  list-style: none;
+  padding-left: 0;
+}
+
+body {
+  font-family: 'SUIT', sans-serif;
+}
+
+/* 멤버 서비스 */
+.member-service {
+  background: yellow;
+  display: flow-root;
+
+  a {
+    /* background: lime; */
+    float: left;
+    text-transform: uppercase;
+  }
+
+  a:not(:first-child)::before {
+    content: '|';
+    margin: 0 0.5em;
+  }
+}
+
+/* 멤버 링크 */
+.member-link {
+  border: 1px solid red;
+  display: flow-root;
+
+  li {
+    background: skyblue;
+    float: left;
+
+    span {
+      background: pink;
+      float: left;
+      margin: 0 0.5em;
+    }
+
+    a {
+      background: orange;
+      float: left;
+      text-transform: uppercase;
+    }
+  }
+}
