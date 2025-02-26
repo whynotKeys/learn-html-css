@@ -10,10 +10,20 @@
   height: 10vh;
 }
 
+/* 내비게이션, 메인 콘텐츠, 사이드바 컨테이너 */
+.nav-main-aside-wrapper {
+  display: flow-root;
+}
 /* 내비게이션 */
 .navigation {
   background: var(--pastel-green);
   height: 15vh;
+
+  @media (min-width: 1024px) {
+    width: 30%;
+    height: 80vh;
+    float: left;
+  }
 }
 /* 메인 콘텐츠 및 사이드바 컨테이너 */
 .content-wrapper {
@@ -31,16 +41,25 @@
     height: 65vh;
     float: left;
   }
+  @media (min-width: 1024px) {
+    width: 60%;
+    height: 80vh;
+  }
 }
 
 /* 사이드 바 */
 .sidebar {
   background: var(--pastel-yellow);
   height: 25vh;
+
   @media (min-width: 768px) {
     width: 50%;
     height: 65vh;
     float: left;
+  }
+  @media (min-width: 1024px) {
+    width: 40%;
+    height: 80vh;
   }
 }
 
