@@ -95,7 +95,7 @@ body *::after {
     /* flex-basis content일때 내용물만큼의 폭을 가짐*/
     flex-basis: 200px;
     /* flex-grow에 1을 주면 전체 부모공간을 꽉 채움. 디폴트는 0 */
-    flex-grow: 1;
+    flex-grow: 0;
     /* 공간이 모자르면 알아서 줄이는 것. 디폴트는 1 */
     flex-shrink: 1;
     /* grow, shrink, basis 단축표기 */

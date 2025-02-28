@@ -1185,3 +1185,191 @@
 ---
 
 ---
+
+# 2025-02-27
+
+**CSS // Logical Properties, FlexBox, Table**
+**Git tag**
+
+## 수업 내용
+
+### Logical Properties (논리속성)
+
+> CSS의 논리 속성은 물리적 방향(예: left, right, top, bottom) 대신 문서의 글쓰기 방향(writing mode) 을 기반으로 요소의 스타일을 지정할 수 있도록 해주는 속성  
+> 다국어 지원 및 다양한 레이아웃을 고려할 때 유용  
+> CSS 논리 속성에서는 요소의 배치를 블록(Block) 과 인라인(Inline) 방향으로 나눔
+>
+> - **Block 방향**: 문서의 주요 흐름(수직 방향, 예: top → bottom)
+> - **Inline 방향**: 텍스트가 흐르는 방향(수평 방향, 예: left → right)
+
+```CSS
+  writing-mode: vertical-lr;
+
+/* float: left 속성을 논리 속성으로 지정 */
+float: inline-start;
+
+/* 가로 크기를 width 속성이 아닌 논리 속성으로 지정 */
+inline-size: 400px;
+/* 세로 크기를 height 속성이 아닌 논리 속성으로 지정 */
+block-size: 100px;
+overflow: auto;
+/* padding-left, padding-right 속성을 논리 속성으로 지정 */
+padding-inline-start: 20px;
+padding-inline-end: 50px;
+
+/* 상하, 좌우를 한 번에 논리 속성으로 지정 */
+padding-inline: 20px;
+padding-block: 10px;
+margin-inline: 30px;
+margin-block: 50px;
+
+/* position의 offset을 지정할 때 논리 속성을 사용한 경우 */
+.example {
+  position: absolute; /* 변경 없음 */
+  inset-block-start: 0; /* top: 0; */
+  inset-inline-start: 0; /* left: 0; */
+  inset-inline-end: 0; /* right: 0; */
+  inset-block-end: 0; /* bottom: 0; */
+}
+
+/* position의 offset을 지정할 때 논리 속성 중 단축 표기법을 사용한 경우 */
+.example {
+  position: absolute; /* 변경 없음 */
+  inset: 0;
+}
+```
+
+- `currentColor` 속성값 : 현재 글자색과 같은 색
+  : outline/ghost button(=fill 없이 테두리와 글자만 있는 버튼) 만들 때 사용하기 좋다
+
+- `writing-mode`
+
+  > `writing-mode`는 텍스트의 **쓰기 방향(글자 흐름)**을 결정하는 CSS 속성으로 가로쓰기(LTR, RTL) 또는 세로쓰기(수직, 혼합) 를 제어함
+
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode
+
+  ```CSS
+  /* Keyword values */
+  writing-mode: horizontal-tb;
+  writing-mode: vertical-rl;
+  writing-mode: vertical-lr;
+  writing-mode: sideways-rl;
+  writing-mode: sideways-lr;
+
+  /* Global values */
+  writing-mode: inherit;
+  writing-mode: initial;
+  writing-mode: revert;
+  writing-mode: revert-layer;
+  writing-mode: unset;
+  ```
+
+### FlexBox(플렉스박스)
+
+> `Flexbox`는 CSS에서 요소들을 효율적으로 정렬하고 배치할 수 있도록 도와주는 1차원 레이아웃 시스템으로, 부모 요소를 flex container(플렉스 컨테이너)로 설정하면 자식 요소인 flex items(플렉스 아이템)들이 유연하게 배치 됨
+
+- `display`: `flex` or `inline-flex`
+- 연관 속성들 참고 링크
+  https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+- `flex-direction`는 4가지 속성값 가짐
+  - `column` / `column-reverse` / `row`(default) / `row-reverse`
+    <img src="src/test_img/flex_axis.svg">
+- `flex-flow`: `flex-direction` + `flex-wrap` 숏핸드 표기
+- `flex-wrap: nowrap;` // 줄바꿈 설정-shrink 동작 여부 결정 (nowrap->줄바꿈 ㄴㄴ)
+- `justify-content` 속성값 중 사이공백 관련 값 3개 정리
+  1. space-between(바깥에는 여백x 안쪽 동일 여백)
+  2. space-around(안쪽 여백의 반만큼 양 바깥쪽에 여백 줌)
+  3. space-evenly(안쪽 여백만큼 양 바깥쪽에 여백 줌)
+- `align-items` initial value: `stretch`(=박스에 맞게 늘어남)
+- `align-content` // 세로 가운데 정렬  
+  작년에 생긴 기능! flex안에서 뿐만 아니라 normal 컨텐트에서도 사용 가능.
+
+- flex 컨테이너는 `"직계 자식"`에만 영향을 줄 수 있음!
+- 중간에 낀 컨테이너에`display: contents;`를 주면 **contents**로 인식되면서 조부모가 직계를 무시하고 조손에 영향을 줌
+
+- `flex-flow` : `flex-direction`: + `flex-wrap` **숏핸드 표기**
+  ※ 선생님은 `display flex 할 떄 꼭 같이 써준다 함 (개인자유)
+- **justify contents**: 주축 방향 정렬
+- **align-items**: 교차축 방향 정렬
+  => flex-direction 에 따라 x축/y축이 바뀔 수 있기 때문에 가로/세로 아님
+
+- flex box를 사용해서 만들 수 있는 디자인들 링크
+  https://d2.naver.com/helloworld/8540176
+
+- ` order` 속성으로 아이템의 순서 변경 가능!
+
+```CSS
+    /* odd(홀수), even(짝수) 값을 줘서 일부만 부르고 앞당기기*/
+    /* 모든 flex 아이템의 기본 order는 0번.
+    내 자리: 0인 것// 같은 0번일 때는 마크업 순서대로 나오고, 하나가 -1이 되면 맨앞으로 가는 것! */
+  &:nth-child(even) {
+    order: -1;
+    }
+```
+
+- `flex-grow`(자동커짐)/ `flex-shrink`(자동줄임) / `flex-basis`(원래크기) 3가지 같이 공부해야 이해 됨
+  https://developer.mozilla.org/ko/docs/Web/CSS/flex-basis
+
+```CSS
+    /* flex-box의 기본 크기 */
+    /* flex-flow가 row일 떄는 width, inline-size처럼 작용하고
+    columns일 때는 height, block-size처럼 작용함 */
+    /* ※ auto 값을 가지지 않은 flex-basis와 width(flex-direction: column인 경우 height) 값을 동시에 적용한 경우, flex-basis가 우선함!!
+      -> flex-basis는 강하다. 일찐이다 */
+    /* flex-basis가 content일때: 내용물만큼의 폭을 가짐*/
+    flex-basis: 200px;
+    /* flex-grow에 1을 주면 전체 부모공간을 꽉 채움. 디폴트는 0 */
+    flex-grow: 0;
+    /* 공간이 모자르면 알아서 줄이는 것. 디폴트는 1 */
+    flex-shrink: 1;
+
+    /* grow, shrink, basis 단축표기 */
+    flex: 0 1 200px;
+
+```
+
+※ spandml initial display는 inline, initial position은 static
+**※ Emmet 사용해서 여러 요소 한 번에 생성하기 예시**
+
+- div.item$\*3{자식요소}
+- .item$\*4{자식요소$} ()
+
+**※ CSS 문법 : 포함 요소**
+
+- ` [class*='item'] {}` -> class명에 item 포함하는 요소
+- ` [class^='item'] {}` -> class명이 item으로 시작하는 요소
+
+### Table 테이블 // Position:sticky
+
+- 백분율은 항상 자신의 컨테이닝 블록 기준으로 적용
+- 테이블 deprecatied된 html design이 많다. css에서 적용할 것을 권장
+  참고링크 : https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table
+- 테이블 테두리 합치는 속성 ` border-collapse: collapse;`
+- 테이블 테두리 간격 없애는 속성 `border-spacing: 0;`
+- `position: fixed;`는 뷰포트 기준으로 작동
+- `position: sticky;` 는 부모기준으로 작동
+
+### Git 실습 // git tag
+
+**local 관련 명령어**
+
+- `$git tag v1.0.0` // 마지막 커밋에 버전 추가!
+- `$git tag` // 명령어로 현재 버전을 볼 수 있음
+- `$git tag -d v1.0.0` // 해당 버전 태그를 삭제
+- `git tag -a v1.0.0 -m "첫 번째 릴리즈 버전" HEAD~2` // 특정 커밋에 버전을 부여
+- `git show v1.0.0` // 태그 세부사항 보여줌
+- `git checkout v1.0.0` // 그 버전으로 바로 갈 수 있음
+
+**remote 관련 명령어**
+
+- `git push origin 태그이름` // 특정 태그만 리모트 저장소로 전송
+- `git push origin --tags` // 모든 태그를 리모트 저장소로 전송
+- `git push --delete origin 태그이름` // 리모트 저장소의 특정 태그를 삭제
+- `git push origin --delete $(git tag -l)` // 리모트 저장소의 모든 태그를 삭제
+
+<br />
+<br />
+
+---
+
+---
