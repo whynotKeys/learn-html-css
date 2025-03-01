@@ -1353,9 +1353,9 @@ margin-block: 50px;
 
 **local 관련 명령어**
 
-- `$git tag v1.0.0` // 마지막 커밋에 버전 추가!
-- `$git tag` // 명령어로 현재 버전을 볼 수 있음
-- `$git tag -d v1.0.0` // 해당 버전 태그를 삭제
+- `git tag v1.0.0` // 마지막 커밋에 버전 추가!
+- `git tag` // 명령어로 현재 버전을 볼 수 있음
+- `git tag -d v1.0.0` // 해당 버전 태그를 삭제
 - `git tag -a v1.0.0 -m "첫 번째 릴리즈 버전" HEAD~2` // 특정 커밋에 버전을 부여
 - `git show v1.0.0` // 태그 세부사항 보여줌
 - `git checkout v1.0.0` // 그 버전으로 바로 갈 수 있음
@@ -1366,6 +1366,185 @@ margin-block: 50px;
 - `git push origin --tags` // 모든 태그를 리모트 저장소로 전송
 - `git push --delete origin 태그이름` // 리모트 저장소의 특정 태그를 삭제
 - `git push origin --delete $(git tag -l)` // 리모트 저장소의 모든 태그를 삭제
+
+<br />
+<br />
+
+---
+
+---
+
+# 2025-02-28
+
+**CSS // Position:sticky 실습, Stacking Context, Searchbar 실습**
+**Git Stash**
+
+## 수업 내용
+
+### UI실습 // 부트캠프 13기 명단(feat.sticky, z-index)
+
+- `z-index`
+  > HTML 요소의 쌓임 순서(z축 방향)를 정의하는 CSS 속성. 웹 페이지에서 요소들이 겹칠 때, 어떤 요소가 다른 요소 위에 표시될지를 결정함
+  - `position: static`이 아닌 요소들(`relative`, `absolute`, `fixed`, `sticky`)은 모두 `z-index`를 가질 수 있음
+- 값이 클수록 요소는 더 위쪽에 쌓이고, 값이 작을수록 아래에 쌓임
+- `z-index는` **stacking context** 내부에서만 영향을 발휘함
+
+- **기술부채**
+  > 소프트웨어 개발에서 더 나은 솔루션을 사용하지 않고 쉬운 솔루션을 선택함으로써 발생하는 추가 비용  
+  > 예시 : inline- 속성일 때 요소 사이에 생기는 공백을 없애려고 font-size:0 트릭을 사용
+           -> 자식 요소가 생겼을 때 해당 속성값이 내려가면서 문제가 생길 수 있음.
+              (※ 이런 편법 대신 display:flex로 없애는 것이 좋다.)
+- transform 요소
+  https://developer.mozilla.org/ko/docs/Web/CSS/transform
+
+### Stacking Context(쌓임 맥락)
+
+> HTML 요소가 화면 상에서 쌓이는 순서(z축 방향)를 결정하는 개념으로 웹 페이지에서 요소들이 겹칠 때, 어떤 요소가 다른 요소 위에 표시될지를 결정하는 데 중요한 역할을 함
+
+- 참고 링크
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context
+  https://developer.mozilla.org/ko/docs/Web/CSS/transform
+
+- `filter` 속성
+
+  - 속성값: blur, brightness, contrast, hue-rotate,drop-shadow, gayscale, sepia, invert, opacity, saturate 등등...
+  - 아래와 같이 함수 조합도 가능
+    ```CSS
+      filter: contrast(175%) brightness(103%);
+    ```
+  - 참고 링크
+    https://developer.mozilla.org/ko/docs/Web/CSS/filter
+
+- `transition` 속성
+
+  > shorthand property for transition-property, transition-duration, transition-timing-function, transition-delay, and transition-behavior
+
+  - 트랜지션으로 변화를 시작할 property와 시간은 해당 요소에 주고 가상요소에 변화 후의 속성값을 부여해서 시간에 따른 요소 모양의 변화 정의
+  - https://developer.mozilla.org/ko/docs/Web/CSS/transition
+  - transition-timing-function 시간 그래프 볼 수 있는 사이트
+    https://cubic-bezier.com/#.17,.67,.83,.67
+  - 개발자도구에서 그래프 확인, 값 조정해볼 수도 있음
+
+- `transform` 속성
+
+  > The transform CSS property lets you rotate(회전), scale(크기 변경), skew(찌그러뜨리기), or translate(이동) an element. It modifies the coordinate space of the CSS visual formatting model.
+
+- **`Stacking Context`** (`z-index`, `transform`, `transition`)코드 예시
+
+  ```CSS
+  .case-01 {
+    display: flex;
+    flex-flow: row nowrap;
+
+    .button-avatar {
+      margin-right: -20px; /* 음수 마진을 넣으면 박스가 좁아져서 요소끼리 겹침 발생 */
+      position: static;
+      filter: grayscale(100%);
+
+      /* 트랜지션의 시작점은 여기, 도착점은 hover에 */
+      transition: rotate 500ms;
+      /*변화를시작할property이름 시간, */
+
+      &:hover,
+      &:focus {
+        filter: none;
+        /* 아바타의 겹치는 순서를 제어하기 위해 0보다 큰 값 지정  */
+        /* position이 static이 아닌 경우에만 z-index 적용됨 */
+        z-index: 10;
+        transform: scale(1.2);
+        /* transform: translate(0, 20px); */
+        /* translate는 ▼요렇게도 쓸 수 있음. 아래 쪽이 모던한 코드 형식임 */
+        /* translate: 0 -20px; */
+
+        /* opacity: 0.8; */
+        rotate: 20deg; /* turn or deg로 지정. 음수값 부여 시 왼쪽으로 회전 */
+      }
+    }
+  }
+
+  /* Transition */
+  .case-02 {
+    margin-block-start: 20px;
+    display: flex;
+    gap: 20px;
+
+    [class^='area'] {
+      /* 시간은 normal이 0.4s */
+      /* 앞에꺼 끝나면 시작되도록 딜레이 넣음 */
+      transition-property: background, border-radius;
+      transition-duration: 0.2s, 1s;
+      transition-delay: 0s, 0.2s;
+      transition-timing-function: ease;
+
+      /* 줄여쓰기: `효과 발동시간 지연시작 타이밍` */
+      transition:
+        background 0.2s 0s ease,
+        border-radius 1s 0.2s ease;
+
+      /* 전체에 동일한 시간 줄 때 all로 기재 */
+      transition: all 200ms;
+
+      &:hover {
+        background: var(--pastel-orange);
+        border-radius: 50%;
+        rotate: 2turn;
+      }
+    }
+  }
+  ```
+
+### UI실습 // 서치바
+
+- 마크업// 가장 작은 컴포넌트(원자 or 분자단위)부터 만들어서 합치는 방식으로 구현
+- 원래 CSS에서는 자식 요소를 선택했을 떄 부모요소를 부를 수는 없어서 js를 썼지만, focus-within이라는 새로운 선택자가 나오면서 CSS에서 바로 부를 수 있게 됨
+  ->  
+   focus-widthin mdn
+
+### 기타 스몰팁
+
+※ `<fieldset>`태그로 선택자 지정 시 `flex`됐을 때 에러 케이스 존재. 가급적 사용x -> 따로 그룹핑해서 class 등으로 선택할 것을 권장
+
+※ `:focus` 시 어떤 서식이 선택되었는지 시각적으로 구분할 수 있는 다른 대안(디자인 수단)이 있는 경우엔 outline을 제거해도 좋지만, 그렇지 않을 경우 절대절대절대 outline 을 없애서는 안됨
+
+※ 원래 버튼은 손가락 안 보이는 게 기본스타일(근본) `a(link)`만 손가락 나오는 게 근본이다
+
+### Git 실습 // `git stash`
+
+> `git stash`는 Git에서 변경된 파일을 임시로 보관하고 나중에 다시 적용할 수 있는 기능  
+> 아직 커밋하지 않은 변경 사항이 있지만 다른 브랜치로 이동하거나, 다른 작업을 하고자 할 때 주로 사용  
+> 이 명령을 사용하면 변경 사항을 임시로 "stash"(숨기기)할 수 있으며, 나중에 필요할 때 다시 불러올 수 있음
+
+**stash 관련 명령어**
+
+- `git switch -c ui` // ui라는 브랜치를 만들고 체크아웃하거라
+- `git stash` // 현재까지의 변경내용을 stash에 임시 저장
+- `git stash list` // 임시 stash 목록 확인
+- `git stash show` // 임시저장한 변경사항의 내용 조회
+- `git stash apply` // 변경사항 다시 적용
+- `git stash drop` // 임시저장 이력 삭제
+- `git stash pop` // 임시로 숨겨놓은 변경 사항 브랜치에 적용 + 숨겨놓은 이력 삭제
+  : apply는 이력 남기고 가져오기, pop은 이력도 삭제한다는 차이 있음
+
+- `git restore .` 전부 되돌리기
+- `git branch -d ui` // 브랜치 삭제. 해당 브랜치로 작성한 코드 병합 전에 삭제 강제할 시 `-D` 옵션으로 명령해야 수행
+
+## 과제 관련
+
+- home-work 폴더>login 폴더에 과제 있음
+  : figma에 피그마 시안 있음
+  : pages에 이미지, 파일요소
+
+// login.md에는 회고 적을 것 -> 학습한 내용X. 나의 한 주를 돌아보는 내용
+
+- 차주부터는 과제 피드백에 코드 레벨의 내용은 없을 예정. 수업 시간에 정리해주시는 코드랑 스스로 비교해보면 됨
+  과제 코멘트는 회고 내용에 대한 피드백으로 구성될 것임
+
+- 화요일 오전 -> 과제 리뷰
+
+- 신경 쓸 부분
+  - 키보드로 컨트롤되는 체크박스 까다로울 것
+  - 스위치 디자인 어려울 것
+  - 모바일.데스크탑 마다 다르게 보이는 요소
 
 <br />
 <br />
