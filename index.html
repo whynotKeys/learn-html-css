@@ -76,12 +76,12 @@
           color: white;
           font-size: 1.5rem;
           margin: 1rem;
-          padding: 1rem 2rem; /* 글자와 도형 간격 확보 */
+          padding: 0.25rem 2rem; /* 글자와 도형 간격 확보 */
           text-align: center;
           margin-inline: 1.25rem;
         }
 
-        /* 양옆 도형 스타일 */
+        /* 양옆에 도형 */
         .index-header::before,
         .index-header::after {
           content: '';
@@ -90,33 +90,25 @@
           bottom: 0;
           width: 30px; /* 도형의 너비 */
           background-color: #000a36; /* 헤더와 동일 배경색 */
+          clip-path: polygon(
+            100% 0%,
+            75% 50%,
+            100% 100%,
+            25% 100%,
+            0% 50%,
+            25% 0%
+          );
         }
 
         /* 왼쪽 도형 */
         .index-header::before {
-          left: -30px; /* 헤더와 밀착 */
-          clip-path: polygon(
-            100% 0%,
-            75% 50%,
-            100% 100%,
-            25% 100%,
-            0% 50%,
-            25% 0%
-          );
+          left: -30px; /* 헤더와 밀착시킴 */
         }
 
         /* 오른쪽 도형 */
         .index-header::after {
-          right: -30px; /* 헤더와 밀착 */
+          right: -30px; /* 헤더와 밀착시킴 */
           transform: scaleX(-1); /* 좌우 반전으로 대칭 */
-          clip-path: polygon(
-            100% 0%,
-            75% 50%,
-            100% 100%,
-            25% 100%,
-            0% 50%,
-            25% 0%
-          );
         }
       }
     </style>

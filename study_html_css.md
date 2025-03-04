@@ -1552,3 +1552,65 @@ margin-block: 50px;
 ---
 
 ---
+
+# 2025-03-04
+
+**CSS // 컴포넌트화 (feat. Login 과제풀이)**
+
+## 수업 내용
+
+### 같이 해보는 반응형 로그인 화면(Login)
+
+- 컴포넌트(부품)을 만들 때는 **바깥쪽 여백을 넣으면 안됨** 배치할 때 넣자
+- `inline`요소는 `width` 속성 줄 수 없음. 기본적으로 `content`값을 가지며, 값을 부여해도 무시함  
+  -> `display: inline-flex;` 로 바꾸면 width 줄 수 있음
+- **키보드 접근 시 표시되는 테두리** : `포커스 링`이라고 부름
+- `:has()` <- 특정 조건을 만족하는 자식 또는 하위요소를 포함하는 부모 요소를 선택할 수 있음 // 과거에는 없어서 js 사용했음
+- `checked` 로 불러서 쓰려면 `input`요소 뒤에 `label`이 있어야 함 (형제 레벨 이여야함)
+  그에 반해 `has`는 비교적 제한이 적음
+- `inline`은 `padding` 줘도 영역이 커지지 않음. 부모 요소한테 `display: inline-flex;` 주면 부모상자와 함께 영역이 커지게 할 수 있음
+  (자식이 `flex-item`이 되면서 영역 가지게 되는 것)
+- `text-indent` <-텍스트의 첫 줄 들여쓰기 설정. `clear:both;`처럼 블록 요소에만 사용 가능함
+- 이미지 여러개를 png 하나로 합치고 배경으로 운용 -> called `CSS Sprite` :: 성능적으로 좋음
+  https://www.toptal.com/developers/css/sprite-generator
+- `filedset` 태그에는 아무것도 안 하는 게 좋다
+  혹시 모르니 border/margin/padding도 다 0으로 설정해서 없애버려
+- 성능 측면에서 봤을 때는 `img` 부르는 것보다 마크업 안에 `svg`가 바로 있는 게 좋음
+- outline 디자인은 둥글게 안 됨. 각진 형태만 줄 수 있음
+  -> 둥근 효과를 주기 위해, outline 0 주고 box-shadow+border-radius를 줌
+  ```CSS
+     &:focus {
+     outline: 0;
+     box-shadow: 0 0 0 1px;
+     border-radius: var(--rounded-xs);
+     }
+  ```
+
+**접근성 관련**
+
+- `:focus`는 마우스로 접근해도 적용되지만 `:focus-visible` 쓰면 **키보드 접근 시에만** 적용 됨
+- `aria-live` : js 등으로 동적 업데이트된 데이터가 있을 때, 읽어주는 방식 선택할 수 있음
+  - `polite` (읽던 거 마저 일고 말함)
+  - `assertive` (말하다 끊고 바로 말함)
+- `aria-errormessage` : 접근성(A11Y) 관련 속성으로,
+  스크린 리더(Screen Reader) 사용자에게 에러 메시지를 연결해서 읽어주기 위한 용도로 사용
+
+  - https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-errormessage
+  - 사용 예시 (aria-invalid/aria-describedby/role="alert" 이 세 가지를 꼭 함께 써야 함)
+    ```html
+    <label for="email">이메일</label>
+    <input
+      type="email"
+      id="email"
+      aria-errormessage="emailError"
+      aria-invalid="true"
+    />
+    <span id="emailError" role="alert">올바른 이메일 주소를 입력해주세요.</span>
+    ```
+
+<br />
+<br />
+
+---
+
+---
