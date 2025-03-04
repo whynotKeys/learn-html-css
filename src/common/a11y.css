@@ -1,3 +1,6 @@
+@import '/src/common/theme.css';
+
+/* 스크린리더 사용자를 위한 클래스 (화면에는 보이지 않지만 스크린 리더 사용자는 접근ㄹ해서 읽을 수 있음) */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -12,3 +15,13 @@
 
 /* white-space : 공백문자/줄바꿈 처리. 
    여기서는 nowrap(줄바꿈 금지)로 overflow돼서 세로로 줄바꿈 되는 거 막아줌 */
+
+/* 기본 Focus 스타일링 */
+*:focus {
+  outline: 0;
+}
+
+*:focus-visible {
+  box-shadow: 0 0 0 1px var(--green-700, rgb(111, 111, 255));
+  border-radius: var(--rounded-xs, 0.25rem);
+}

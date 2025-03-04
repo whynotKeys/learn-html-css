@@ -1,0 +1,22 @@
+@import '/src/common/modern-reset.css';
+@import '/src/common/login-theme.css';
+@import '/src/common/a11y.css';
+@import '/src/common/base.css';
+
+/* 텍스트 링크 */
+
+.text-link {
+  display: inline-flex;
+  font-size: var(--fond-md);
+
+  &:hover {
+    background: var(--blue-100);
+  }
+  /* outline 디자인은 둥글게 안 됨. 각진 형태만 줄 수 있음 */
+  /* 둥근 효과를 주기 위해, outline 0 주고 box-shadow+border-radius를 줌 */
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 1px;
+    border-radius: var(--rounded-xs);
+  }
+}
