@@ -1,0 +1,37 @@
+@import '/src/common/modern-reset.css';
+@import '/src/common/theme.css';
+@import '/src/ui/components/avatar/avatar.css';
+
+.img-avatar,
+.state {
+  /* 초기값(static)으로 포지션 변경 */
+  position: initial !important;
+}
+
+/* 그리드 활용 */
+.grid-box {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.img-avatar {
+  /* 그냥 잘 보이라고 넣은 속성들 */
+  margin-bottom: 20px;
+  margin-inline: auto;
+
+  /* 정렬 숏핸드 */
+  /* place-items: (justify-items) (align-items); */
+  display: grid;
+
+  img,
+  figcaption {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+
+  figcaption {
+    /* justify-self: end;
+    align-self: end; */
+    place-self: end;
+  }
+}
