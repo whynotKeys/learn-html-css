@@ -2,31 +2,77 @@
 @import '/src/common/login-theme.css';
 @import '/src/common/a11y.css';
 @import '/src/common/base.css';
+@import '/src/ui/components/logo/logo.css';
+@import '/src/ui/components/input/input.css';
+@import '/src/ui/components/checkbox/checkbox.css';
+@import '/src/ui/components/text-link/text-link.css';
+@import '/src/ui/components/switch/switch.css';
+@import '/src/ui/components/button/button.css';
 
-.logo {
-  --size: 14.375rem;
-
-  display: block; /* 부모가 크기를 갖게 */
-  width: var(--size, 14.375rem);
-  inline-size: var(--size, 14.375rem);
+/* 컨테이너 */
+.container {
+  padding: 0 var(--spacing-4);
 }
+/* min-height: 100vh;
+  min-height: 100dvh; dvh : dynamic vieport height
 
-/* 로고 컴포넌트(svg 요소) */
-.logo {
-  svg {
-    display: block;
-    width: 100%; /* 부모크기 따라가게 넣는, jpg,png는 깨지지 않도록 max-width 많이 씀 */
-    inline-size: 100%;
-    height: auto;
-    block-size: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center; */
+
+/* 헤더 */
+.login-header {
+  padding: 4.375rem 0 2.8125rem;
+
+  @media (min-width: 48rem) {
+    padding: 6.25rem 0 3.125rem;
+  }
+
+  /* 여기서 헤더 밖에 쓰면 모든 곳에 있는 로고에 적용됨. 꼭 헤더 안에 */
+  .logo {
+    margin: 0 auto;
+
+    @media (max-width: 48rem) {
+      width: 11.25rem;
+      inline-size: 11.25rem;
+    }
   }
 }
 
-/* 로고 컴포넌트 (img 요소) */
-.logo {
-  --size: 14.375rem;
+/* 로그인 폼 */
+.login-form {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: var(--spacing-5);
 
-  display: block;
-  width: var(--size, 14.375rem);
-  inline-size: var(--size, 14.375rem);
+  fieldset {
+    display: contents;
+  }
+
+  .checkbox-wrapper {
+    /* 탭으로 선택 시 버튼보다 체크박스를 먼저 선택할 수 있게 순서 줌 */
+    order: 1;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    .text-link {
+      margin-left: auto;
+      margin-inline-start: auto;
+    }
+  }
+
+  .button {
+    margin-top: var(--spacing-3);
+    margin-block-start: var(--spacing-3);
+    height: 3.75rem;
+    block-size: 3.75rem;
+    font-weight: 700;
+
+    &:focus-visible {
+      box-shadow: 0 0 0 1px var(--red-500);
+    }
+  }
 }

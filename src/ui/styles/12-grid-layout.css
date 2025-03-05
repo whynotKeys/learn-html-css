@@ -1,0 +1,113 @@
+@import '/src/common/modern-reset.css';
+@import '/src/common/theme.css';
+
+body {
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 0 auto;
+}
+
+/* 헤더 */
+.header {
+  background: var(--pastel-coral);
+  height: 10vh;
+}
+
+/* 내비게이션 */
+.navigation {
+  background: var(--pastel-green);
+  height: 15vh;
+}
+
+/* 메인 콘텐츠 */
+.content {
+  background: var(--pastel-aqua);
+  height: 40vh;
+}
+
+/* 사이드 바 */
+.sidebar {
+  background: var(--pastel-yellow);
+  height: 25vh;
+}
+
+/* 푸터 */
+.footer {
+  background: var(--pastel-lavender);
+  height: 10vh;
+}
+
+/* 그리드를 활용한 반응형 레이아웃 */
+/* 그리드 컨테이너 */
+
+.container {
+  display: grid;
+  padding: 0 20px;
+  /* grid item은 order속성을 활용하여 배치 순서를 변경할 수 있다
+  .navigation {
+    order: 1;
+  } */
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(12, 1fr);
+    max-width: 800px;
+    max-inline-size: 800px;
+
+    .header,
+    .navigation,
+    .footer {
+      /* -1 => 마지막 컬럼라인 지칭 : 1부터 끝까지 */
+      grid-column: 1 / -1;
+    }
+
+    .content,
+    .sidebar {
+      /* 6칸씩 먹는 것 */
+      grid-column: span 6;
+    }
+  }
+
+  /* 그대로 둘 수 있는 건 둬도 됨 */
+  @media (min-width: 1024px) {
+    max-width: 1280px;
+    max-inline-size: 1280px;
+
+    .navigation,
+    .sidebar {
+      grid-column: span 3;
+    }
+  }
+}
+
+/* 내가 짠거 */
+/* @media (min-width: 48rem) {
+  .container {
+    inline-size: 100%;
+    block-size: 100vh;
+
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(12, 1fr);
+
+    display: grid;
+    grid-template-areas:
+      'header header header header header header header header header header header header'
+      'navigation navigation navigation navigation content content content content sidebar sidebar sidebar sidebar'
+      'footer footer footer footer footer footer footer footer footer footer footer footer';
+
+    .header {
+      grid-area: header;
+    }
+    .navigation {
+      grid-area: navigation;
+    }
+    .content {
+      grid-area: content;
+    }
+    .sidebar {
+      grid-area: sidebar;
+    }
+    .footer {
+      grid-area: footer;
+    }
+  }
+} */

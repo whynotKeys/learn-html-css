@@ -1,0 +1,32 @@
+@import '/src/common/modern-reset.css';
+@import '/src/common/login-theme.css';
+@import '/src/common/a11y.css';
+@import '/src/common/base.css';
+
+.logo {
+  --size: 14.375rem;
+
+  display: block; /* 부모가 크기를 갖게 */
+  width: var(--size, 14.375rem);
+  inline-size: var(--size, 14.375rem);
+}
+
+/* 로고 컴포넌트(svg 요소) */
+.logo {
+  svg {
+    display: block;
+    width: 100%; /* 부모크기 따라가게 넣는, jpg,png는 깨지지 않도록 max-width 많이 씀 */
+    inline-size: 100%;
+    height: auto;
+    block-size: auto;
+  }
+}
+
+/* 로고 컴포넌트 (img 요소) */
+.logo {
+  --size: 14.375rem;
+
+  display: block;
+  width: var(--size, 14.375rem);
+  inline-size: var(--size, 14.375rem);
+}
