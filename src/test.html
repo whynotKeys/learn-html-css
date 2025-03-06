@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Floating Label Example</title>
+    <style>
+      .form-group {
+        position: relative;
+        margin: 20px 0;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+      }
+
+      label {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: all 0.3s ease;
+        color: gray;
+        pointer-events: none;
+      }
+
+      input:focus + label,
+      input:not(:placeholder-shown) + label {
+        top: 0;
+        left: 10px;
+        font-size: 12px;
+        color: blue;
+        background: white;
+        padding: 0 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-group">
+      <input type="text" id="name" placeholder=" " required />
+      <label for="name">이름</label>
+    </div>
+
+    <div class="book">
+      <div class="cover">
+        <div class="pages"></div>
+      </div>
+    </div>
+  </body>
+</html>
