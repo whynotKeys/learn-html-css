@@ -30,7 +30,7 @@ body {
   flex-flow: column nowrap;
   padding: 1rem;
   /* box-shadow: 2px 2px 3px 0 #ff0000; */
-  /* box-shadow: 0 0 8px 1px #ff0000; */
+  box-shadow: 0 0 8px 1px #ff0000;
 
   .subject {
     font-weight: 600;
@@ -78,7 +78,6 @@ body {
     grid-template-rows: subgrid;
     grid-row: span 4;
 
-    border: 1px solid #ff0000;
     max-width: 25rem;
   }
 }

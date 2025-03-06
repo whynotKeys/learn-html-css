@@ -1,0 +1,64 @@
+@import '/src/common/modern-reset.css';
+@import '/src/common/theme.css';
+@import '/src/common/a11y.css';
+@import '/src/common/base.css';
+
+.container {
+  background: var(--pastel-lavender);
+  padding: 1em;
+
+  .case {
+    border: 1px solid purple;
+    margin-block: 1.25rem;
+  }
+
+  /* case-01 column-width : 지정한 너비만큼 단이 나눠짐->뷰포트 크기에 따라 갯수 적어지거나 많아질 수 있음 */
+  .case-01 {
+    column-width: 15rem;
+    column-rule: 4px solid purple;
+    column-gap: 2rem;
+  }
+
+  /* case-02 column-count : 지정한 개수만큼 단이 나눠짐 */
+  .case-02 {
+    column-count: 4;
+    column-rule: 4px dotted var(--pastel-purple);
+    /* column-span: all을 지정하기 위해서는 블록 요소여야만 함 */
+    span {
+      display: block;
+      column-span: all;
+
+      background: var(--pastel-dark-blue);
+      color: var(--white);
+      padding: 0.5em;
+    }
+  }
+
+  /* case-03~04 columns(width+count) 단축 속성에 column-width 선언*/
+  /* 단위가 있으면 width, 없으면 count. 보통 하나만 쓴다. 지정하지 않은 쪽은 auto가 됨 */
+  .case-03 {
+    columns: 15rem;
+    column-rule: 4px double skyblue;
+  }
+
+  .case-04 {
+    columns: 2;
+  }
+
+  /* column-fill */
+  .case-05 {
+    columns: 2;
+    column-fill: auto;
+    /* height: 6.25rem; */
+  }
+}
+
+.wrapper {
+  background: var(--pastel-mint);
+  padding: 1em;
+  columns: 5;
+
+  .case {
+    break-after: always;
+  }
+}
