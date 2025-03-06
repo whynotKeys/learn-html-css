@@ -18,6 +18,7 @@
         font-weight: normal;
         font-style: normal;
       }
+
       body {
         font-family: 'HSBombaram3_Regular';
         background: url('/src/test_img/index_background.png') 0 1.5rem repeat;
@@ -25,7 +26,7 @@
         text-align: center;
         margin-block-end: 10rem;
       }
-
+      /* 메인 제목 */
       h1 {
         text-align: center;
         font-size: 1.5rem;
@@ -37,19 +38,21 @@
         z-index: 1;
       }
 
+      /* 링크 */
       a {
         color: #181818;
       }
 
       a:focus {
         outline: 0;
-      }
-
-      a:focus-visible {
+        background: #b3cbff;
         box-shadow: 0 0 0 0.125rem rgb(54, 63, 141);
         border-radius: 0.25rem;
-        background: #b3cbff;
       }
+
+      /* 
+      a:focus-visible {
+      } */
 
       li {
         margin: 0.5rem;
@@ -60,6 +63,7 @@
         font-size: 1.25rem;
       }
 
+      /* 목록 컨테이너 */
       .index-container {
         inline-size: clamp(20rem, 50%, 40rem);
         margin: 0 auto;
@@ -74,21 +78,48 @@
           background: #fbffec;
           position: sticky;
           top: 5rem;
+          max-height: calc(100vh - 5rem);
+          overflow-y: auto;
           inset-block-start: 5rem;
           padding-block-end: 1rem;
         }
 
+        /* 스크롤바 */
+        .index::-webkit-scrollbar {
+          width: 8px; /* 스크롤바 두께 */
+        }
+
+        .index::-webkit-scrollbar-track {
+          background-color: #b3cbff; /* 트랙 배경색 */
+          border-radius: 4px;
+        }
+
+        .index::-webkit-scrollbar-thumb {
+          background-color: #000a36; /* 스크롤바 색상 */
+          border-radius: 4px;
+        }
+
+        /* 인덱스 헤더 */
         .index-header {
-          display: block;
-          position: relative;
-          z-index: 100;
           background-color: #000a36;
           color: white;
           font-size: 1.5rem;
-          margin: 1rem;
-          padding: 0.25rem 2rem; /* 글자와 도형 간격 확보 */
           text-align: center;
+          padding: 0.25rem 2rem;
           margin-inline: 1.25rem;
+          margin-block: 1rem;
+
+          display: block;
+          position: sticky;
+          z-index: 100;
+          top: 1rem;
+          scrollbar-width: none;
+        }
+
+        .index-body {
+          overflow-y: auto;
+          flex: 1;
+          padding: 1rem;
         }
 
         /* 양옆에 도형 */
@@ -129,39 +160,51 @@
     <div class="index-container">
       <div class="index">
         <h2 class="index-header">UI 예제</h2>
-        <ul>
-          <!-- <li><a href="/src/test.html">테스트링크</a></li> -->
-          <li><a href="/src/ui/01-member-service.html">멤버 서비스 링크</a></li>
-          <li><a href="/src/ui/02-notification.html">알림(Notification)</a></li>
-          <li><a href="/src/ui/03-toast.html">토스트(Toast) UI</a></li>
-          <li>
-            <a href="/src/ui/04-member-service-float.html"
-              >멤버 서비스(Float)</a
-            >
-          </li>
-          <li>
-            <a href="/src/ui/components/avatar/avatar.html">아바타 컴포넌트</a>
-          </li>
-          <li><a href="/src/ui/05-avatar-list.html">아바타 리스트</a></li>
-          <li>
-            <a href="/src/ui/06-responsive-layout.html">반응형 레이아웃</a>
-          </li>
-          <li><a href="/src/ui/07-flex-layout.html">플렉스 레이아웃</a></li>
-          <li><a href="/src/ui/08-table.html">테이블 스타일링</a></li>
-          <li>
-            <a href="/src/ui/09-sticky-header.html">헤더 스타일링(sticky)</a>
-          </li>
-          <li><a href="/src/ui/10-searchbar.html">검색 바 스타일링</a></li>
-          <li><a href="/src/ui/11-login.html">반응형 로그인 페이지</a></li>
-          <li><a href="/src/ui/12-grid-layout.html">그리드 레이아웃</a></li>
-          <li>
-            <a href="/src/ui/13-avatar-grid.html">아바타 그리드 레이아웃</a>
-          </li>
-          <li>
-            <a href="/src/ui/14-grid-linename.html">그리드 레이아웃(name)</a>
-          </li>
-          <li><a href="/src/ui/15-subgrid.html">서브 그리드</a></li>
-        </ul>
+        <div class="index-body">
+          <ul>
+            <!-- <li><a href="/src/test.html">테스트링크</a></li> -->
+            <li>
+              <a href="/src/ui/01-member-service.html">멤버 서비스 링크</a>
+            </li>
+            <li>
+              <a href="/src/ui/02-notification.html">알림(Notification)</a>
+            </li>
+            <li><a href="/src/ui/03-toast.html">토스트(Toast) UI</a></li>
+            <li>
+              <a href="/src/ui/04-member-service-float.html"
+                >멤버 서비스(Float)</a
+              >
+            </li>
+            <li>
+              <a href="/src/ui/components/avatar/avatar.html"
+                >아바타 컴포넌트</a
+              >
+            </li>
+            <li><a href="/src/ui/05-avatar-list.html">아바타 리스트</a></li>
+            <li>
+              <a href="/src/ui/06-responsive-layout.html">반응형 레이아웃</a>
+            </li>
+            <li><a href="/src/ui/07-flex-layout.html">플렉스 레이아웃</a></li>
+            <li><a href="/src/ui/08-table.html">테이블 스타일링</a></li>
+            <li>
+              <a href="/src/ui/09-sticky-header.html">헤더 스타일링(sticky)</a>
+            </li>
+            <li><a href="/src/ui/10-searchbar.html">검색 바 스타일링</a></li>
+            <li><a href="/src/ui/11-login.html">반응형 로그인 페이지</a></li>
+            <li><a href="/src/ui/12-grid-layout.html">그리드 레이아웃</a></li>
+            <li>
+              <a href="/src/ui/13-avatar-grid.html">아바타 그리드 레이아웃</a>
+            </li>
+            <li>
+              <a href="/src/ui/14-grid-linename.html">그리드 레이아웃(name)</a>
+            </li>
+            <li><a href="/src/ui/15-subgrid.html">서브 그리드</a></li>
+            <li>
+              <a href="/src/ui/16-masonry.html">Masonry(메이슨리) 레이아웃</a>
+            </li>
+            <li><a href="/src/ui/components/select/select.html">셀렉트</a></li>
+          </ul>
+        </div>
       </div>
 
       <div class="index">

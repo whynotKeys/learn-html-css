@@ -1711,3 +1711,78 @@ margin-block: 50px;
 ---
 
 ---
+
+# 2025-03-06
+
+**CSS // Grid Layout, Multi Column, Masonry Layout, Select UI**
+
+## 수업 내용
+
+### Grid Layout
+
+- grid Layout 생성 시, 각 라인에 이름 줘서 네임을 사용할 수 있음  
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Grid_layout_using_named_grid_lines
+
+  - `[ㅇㅇ-start] [ㅇㅇ-end]` 이렇게 이름 주면 `ㅇㅇ` 라는 이름으로 영역 지정해줄 수도 있음
+  - 예시 코드
+
+  ```CSS
+  .container {
+  min-height: 100vh;
+  min-block-size: 100vh;
+
+  display: grid;
+
+  grid-template-columns:
+    [full-start] minmax(1rem, 1fr) [content-start] repeat(12, minmax(5.3125rem, 1fr))
+    [content-end] minmax(1rem, 1fr) [full-end];
+  grid-auto-flow: dense;
+  }
+  ```
+
+- gird / flex 모두 직계 자식만 아이템으로 취급 가능
+- **subgrid**
+
+  > 부모 그리드 컨테이너의 트랙 정의(행/열 크기)를 자식 그리드 컨테이너에서 그대로 상속받아 사용하는 방식  
+  > 보통은 그리드 컨테이너 안의 요소들이 자기만의 독립적인 그리드를 가질 수 있지만, subgrid를 사용하면 부모의 그리드 시스템을 그대로 따라가도록 강제할 수 있음
+
+- `grid-auto-flow` :`row | column | row dense | column dense`
+  > 그리드 아이템이 배치되지 않았을 때, 자동으로 어떻게 흐를지를 결정하는 속성
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow
+- `auto-fit`과 `grid`를 쓰면 `@media` 쿼리 없이도 **반응형 웹 구현 가능**
+
+### Multi Column
+
+- 참고 링크
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_multicol_layout
+  - `columns`: 열 너비 및 개수 `(column-width & column-count)`
+    - `column-width` // 지정한 너비만큼 단이 나눠짐 `->` 뷰포트 크기에 따라 갯수 적어지거나 많아질 수 있음
+    - `column-count` // 지정한 개수만큼 단이 나눠짐
+      ※ 블록 컨테이너에만 적용 가능
+      ※ Flex나 Grid처럼 요소별 배치가 아니라, **텍스트 흐름을 나누는 용도**
+  - `column-rule`: 다단 레이아웃에서 각 컬럼 사이에 그려지는 선을 설정하는 속성
+  - `column-span`: 특정 요소가 여러 컬럼을 가로질러(span) 차지할 수 있게 하는 속성
+  - `column-fill`: 다단 레이아웃에서 콘텐츠를 각 컬럼에 어떻게 채울지 결정하는 속성
+    ※ `balance` or `auto` 속성값 지님. `balance`가 기본값이며 모든 컬럼 높이를 균등하게 맞춤. `auto`는 한 컬럼 다 채우고 나서 다음 컬럼으로 넘어감
+    ※ 부모 컨테이너의 height가 정해져 있어야 효과적임
+  - `break-after`: 줄바꿈  
+    ※ 다단 레이아웃, 인쇄 미디어 쪽에 특화된 속성
+    -> 일반적인 웹 화면에서는 영향이 거의 없을 때도 있음.  
+    메뉴 내렸을 떄 나오는 구획 나눠진 메뉴 그런 늑김 : 단 나누기로 구현 가능
+
+### Masonry Layout // 실습
+
+- 인스타그램/핀터레스트같이 화면을 꽉 채우는 다양한 이미지들이 반응형으로 바뀌는 레이아웃
+  이미지 위에 캡션 올리는 방법
+- 1/1짜리 grid 만들고 figcaption에 place-self 주는 것
+
+### Select UI // 실습
+
+- 이미지는 svg 사용
+
+<br />
+<br />
+
+---
+
+---

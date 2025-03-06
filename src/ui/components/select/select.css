@@ -1,0 +1,47 @@
+@import '/src/common/modern-reset.css';
+@import '/src/common/theme.css';
+@import '/src/common/a11y.css';
+@import '/src/common/base.css';
+
+/* Select UI */
+/* url('/src/assets/icon/global.svg')
+url('/src/assets/icon/triangle.svg') */
+
+.language {
+  width: 500px;
+
+  display: grid;
+  background: var(--pastel-aqua);
+
+  .lang-select {
+    background: orange;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    block-size: 2.5rem;
+
+    grid-area: 1 / 1 / 2 / 2;
+    place-self: end;
+    z-index: 10;
+  }
+
+  .lang-button {
+    grid-area: 1 / 1 / 2 / 2;
+    display: inline-flex;
+    background: black;
+    color: gray;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    align-items: center;
+
+    place-self: end;
+
+    .lang-icon {
+      justify-content: space-between;
+
+      &::before {
+        content: url('/src/assets/icon/global.svg');
+      }
+    }
+  }
+}
