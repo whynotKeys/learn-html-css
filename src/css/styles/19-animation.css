@@ -231,8 +231,8 @@ body {
   }
 }
 .case-08 .target-animation {
-  animation: wobble 2s infinite ease-in-out;
-  animation-play-state: paused;
+  animation: wobble 2s infinite ease-in-out paused;
+  /* animation-play-state: paused; */
 }
 
 /* Glow Animation */
@@ -250,7 +250,7 @@ body {
   animation-play-state: paused;
 }
 
-/* Rotae */
+/* Light Rotation */
 /* 선언한 변수를 애니메이션에 넣어서 동적으로 바꿀 수 없기 때문에
 property로 선언해서 쓰도록 함 */
 @property --rotation {

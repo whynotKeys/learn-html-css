@@ -1786,3 +1786,109 @@ margin-block: 50px;
 ---
 
 ---
+
+# 2025-03-07
+
+**CSS // 라이트.다크 모드, 애니메이션, 컨테이너 쿼리, Git rebase**
+
+## 수업 내용
+
+### 라이트/다크모드
+
+- 미디어 쿼리 : 화면 너비뿐만 아니라 다크/라이트 모드에도 사용가능
+- `svg`태그에 접근해서 `fill` 색깔 바꿀 수 있음 / `currentColor` 넣고 `style` 태그 넣어서 **라이트/다크모드에 따라 색 바뀌게** 할 수 있음
+
+  ※ `color` 쓸 거면 `svg`의 `color: currentColor;`로 해야 하고 `fill` 쓸 꺼면 `g`안에 속성을 `fill="none"`로 해놔야 적용 됨
+
+  ```CSS
+    <style>
+      g{
+        fill: #000;
+
+        @media (prefers-color-scheme: dark) {
+          fill: #fff;
+        }
+      }
+    </style>
+    <rect width="100%" height="100%" fill="#F3792D"/>
+    <g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
+      fill="none" stroke="none">
+  ```
+
+- 2개의 파비콘 이미지를 등록해서 모드에 따라 다른 파비콘 보여줄 수 있음
+- `light-dark()` 함수 - makes easy to make 2type-color mode
+  -> 아직 일부 모바일 환경에서는 사용 못할 수 있음 주의
+
+  ```CSS
+    :root {
+      color-scheme: light dark;
+      }
+
+    h1 {
+      color: light-dark(black, white);
+    }
+  ```
+
+### 애니메이션
+
+- `@keyframes`: `from`과 `to`로 애니메이션의 단계별 스타일 정의
+
+```CSS
+  /* keyframe에 적용하려는 효과 정의 */
+  @keyframes fade {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  /* 정의해둔 애니메이션 사용. name/duration 2개는 필수 */
+  .case-02 .target-animation {
+    animation-name: fade;  /* 애니메이션 이름 */
+    animation-duration: 2s;  /* 애니메이션 작동 시간 */
+  }
+
+  /* 다양한 옵션들 */
+    animation-iteration-count: infinite;  /* 애니메이션 반복 횟수 : 숫자 혹은 infinite(계속실행) */
+    animation-delay: 3s;  /* 시작시간 지연 */
+    animation-timing-function: linear; /* 실행시간 가속.감속 조정(극적 효과) :  linear, ease-in-out.. 속성값 매우 많음 필요할 때 찾아볼 것*/
+    animation-fill-mode: forwards;  /* 애니메이션이 끝나도 그 스타일을 유지할지, 시작 전에 미리 적용할지를 정하는 옵션 : none(initial) / forwards / backwards both */
+    animation-play-state: paused; /* 애니메이션의 재생 및 정지를 제어 : paused or running */
+
+  /* shorthand 표기 */
+    animation: shrink 2s infinite ease-in-out both paused;
+```
+
+- `transform: perspective(400px) rotateY(0);`  
+  : perspective가 원근감 더해줌. 숫자가 클수록 멀리 있는 것! 보통 400~600 많이 사용
+- `margin`, `height` 등 크기 관련 속성은 reflow를 유발하는 대표적인 속성 -> 변경 지양
+- `transform-style: preserve-3d;` <- 요거 넣어서 **자식 요소도 함께 움직이게** 할 수 있음
+- https://animista.net/play/text/tracking-in/tracking-in-contract-bck-bottom
+
+### 컨테이너 쿼리(Container Query)
+
+> 특정 요소(컨테이너)의 크기나 속성을 기준으로 스타일을 적용할 수 있게 해주는 CSS 기능
+> 이는 요소의 **부모 컨테이너 크기**에 따라 스타일을 변경할 수 있도록 하며, **컴포넌트 기반 디자인**에서 매우 유용
+> 요소가 화면 전체 크기가 아닌 **자신이 속한 컨테이너의 크기**에 따라 동작하도록 함
+
+- 컴포넌트는 컨테이너 쿼리로 만들고, 가져가서 배치할 때는 미디어 쿼리로 하는 걸 추천
+- 요소의 부모 컨테이너 크기에 따라 스타일을 변경할 수 있도록 함
+- 기준 삼고싶은 선택자에 `container(container-type의 숏핸드): inline-size;` 지정. (세로는 size 인데 거의 안 씀)  
+  ※ 필수는 아니지만 컨테이너의 이름도 지정할 수 있음 `container-name: hihi;`
+
+### Git rebase
+
+> 현재 브랜치의 변경 사항을 다른 브랜치의 최신 커밋 위로 옮기는 작업  
+> -> 다른 베이스의 변경사항을 현재 작업 중인 브랜치에 적용
+> Merge와는 다르게 중간에 병합 커밋(merge commit)을 남기지 않고, 히스토리를 한 줄로 쭉 이어서 깔끔하게 만듦
+> 이미 원격 저장소에 푸시된 브랜치를 rebase하면, 히스토리가 꼬일 위험이 있음
+
+- 커밋을 다시 하는 거라서 전체 해시 다 바뀜
+- `git config --global --edit` // git config 파일 수정! 여기서 mergetool 지정 가능
+- `git rebase main` // (다른 브랜치에서) main 브랜치 리베이스하겠노라 = commit의 베이스를 main branch의 최신 commit으로 조정
+- `git mergetool` // 머지툴 열어서 충돌내용 조정
+- `git rebase --continue` // 충돌 해결 완료 후 리베이스 계속
+
+<br />
+<br />
+
+---
+
+---
