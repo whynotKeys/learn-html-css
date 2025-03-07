@@ -4,80 +4,18 @@
 @import '/src/common/base.css';
 
 body {
-  margin: 20px;
-  background: #181818;
-
-  h1 {
-    color: white;
-    margin-block-end: 0.625rem;
-    /* 
-    ::before {
-      content: '';
-      margin-inline-end: 0.625rem;
-    } */
-  }
-}
-
-/* 카드 컴포넌트 */
-.card {
-  border: 1px solid #ff0000;
-  border-radius: 8px;
-
-  background: #000;
-  color: white;
-
-  display: flex;
-  flex-flow: column nowrap;
-  padding: 1rem;
-  /* box-shadow: 2px 2px 3px 0 #ff0000; */
-  box-shadow: 0 0 8px 1px #ff0000;
-
-  .subject {
-    font-weight: 600;
-    font-size: 1.5rem;
-  }
-
-  /* 부모 상자 비율을 잡아놓고 이미지는 비율로 사이즈 조정 */
-  .thumbnail {
-    /* 원본 이미지 크기를 3 / 2 비율로 조절하고 위치 선정 */
-    img {
-      width: 100%;
-      aspect-ratio: 3 / 2;
-      object-fit: cover;
-      object-position: 50% 0;
-    }
-  }
-
-  .content {
-    line-height: 1.5;
-  }
-
-  .more {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-
-    background: #ff0000;
-    color: white;
-    font-weight: 600;
-
-    padding: 1em;
-  }
 }
 
 .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
-  grid-template-rows: auto 1.5rem auto auto;
-  /* grid-template-rows: 200px 1.5rem auto auto; */
-  column-gap: 1.25rem;
-  row-gap: 1.25rem;
+}
 
-  .card {
-    display: grid;
-    grid-template-rows: subgrid;
-    grid-row: span 4;
-
-    max-width: 25rem;
+.card {
+  .thumbnail {
+  }
+  .subject {
+  }
+  .content {
+  }
+  .more {
   }
 }
