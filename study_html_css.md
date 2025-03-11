@@ -1892,3 +1892,193 @@ margin-block: 50px;
 ---
 
 ---
+
+# 2025-03-10
+
+**CSS // @layer, Tailwind**
+
+## 수업 내용
+
+### @layer 규칙
+
+> CSS는 모든 게 다 글로벌이다보니 외부 라이브러리 등 쓰면 우선순위 주기가 어려움  
+> => 레이어를 사용함으로써 우선순위를 정해주게 됨
+
+- https://developer.mozilla.org/ko/docs/Web/CSS/@layer
+- 적용 우선순위
+  **[제일 강함]** `Nolayer(=글로벌)` -> `@layer named` -> `@layer unnamed` **[제일 약함]**  
+  ※ `named`끼리는 정의한 순서가 뒤에 올수록 강함  
+  ※ `!important`는 **반대 방향으로**적용 됨
+- 다양한 @ 규칙들
+
+### **📌 주요 `@` 규칙들**
+
+| 규칙             | 설명                                                                     | 용법                                                                                  |
+| ---------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
+| **`@import`**    | 외부 CSS 파일을 불러올 때 사용                                           | `@import url("styles.css");`                                                          |
+| **`@property`**  | CSS 사용자 정의 속성을 애니메이션 가능하게 만들 때 사용                  | `@property --main-color { syntax: "<color>"; initial-value: blue; inherits: false; }` |
+| **`@font-face`** | 웹 폰트를 정의하여 사용할 때 사용                                        | `@font-face { font-family: "MyFont"; src: url("myfont.woff2") format("woff2"); }`     |
+| **`@media`**     | 반응형 디자인을 적용할 때 사용                                           | `@media (max-width: 768px) { body { background: lightgray; } }`                       |
+| **`@container`** | 요소 크기에 따라 스타일을 적용할 때 사용 (CSS 컨테이너 쿼리)             | `@container (min-width: 500px) { .box { color: red; } }`                              |
+| **`@keyframes`** | CSS 애니메이션을 정의할 때 사용                                          | `@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }`                       |
+| **`@supports`**  | 특정 CSS 기능이 브라우저에서 지원되는지 확인하고 스타일을 적용할 때 사용 | `@supports (display: grid) { .container { display: grid; } }`                         |
+
+---
+
+### **📌 기타 `@` 규칙들**
+
+| 규칙                 | 설명                                       | 용법                                                                  |
+| -------------------- | ------------------------------------------ | --------------------------------------------------------------------- |
+| **`@layer`**         | 스타일 우선순위를 제어할 때 사용           | `@layer base { h1 { color: blue; } }`                                 |
+| **`@namespace`**     | XML 네임스페이스를 지정할 때 사용          | `@namespace svg "http://www.w3.org/2000/svg";`                        |
+| **`@page`**          | 프린트할 때 페이지 스타일을 정의할 때 사용 | `@page { size: A4; margin: 20mm; }`                                   |
+| **`@counter-style`** | 사용자 정의 리스트 스타일을 만들 때 사용   | `@counter-style my-style { system: cyclic; symbols: ➜ ➝ ➞; }`         |
+| **`@scope`**         | 특정 영역에만 스타일을 적용할 때 사용      | `@scope (.wrapper) { p { color: red; } }` (현재 일부 브라우저만 지원) |
+
+---
+
+### **📌 정리**
+
+1. **외부 리소스 로드** → `@import`, `@font-face`
+2. **반응형 디자인 & 지원 확인** → `@media`, `@container`, `@supports`
+3. **애니메이션 & 효과** → `@keyframes`, `@property`
+4. **우선순위 & 범위 지정** → `@layer`, `@scope`
+5. **특수 기능** → `@namespace`, `@counter-style`, `@page`
+
+### Tailwind CSS
+
+> Bootstrap같은 Pre Built-in 컴포넌트 방식과 달리 tailwind는 Utility-first 개발 방식을 제공
+> html 마크업에서 클래스만으로 스타일링 가능
+
+- JS 모듈 시스템에는 mjs와 cjs 두 가지 있음. mjs가 더 최신 인 듯
+- tailwid.config.js 테일윈드 설정파일
+
+**※ git init 이후에는 항상 gitignore를 해두자**
+
+#### 프로젝트 세팅
+
+- pnpm 글로벌 설치 및 확인
+
+  - Pnpm: npm보다 빠르고 효율적, pnpm 사용 시 명령어에서 run 생략 가능  
+     https://pnpm.io/ko/  
+    `$npm install -g pnpm@latest-10`  
+    `$npm list -g`
+
+- git & gitignore 세팅  
+   `$git init`  
+   `$npx add-gitignore node windows osx visualstudiocode`  
+   gitignore파일에 .DS*Store 등록 후 `add` & `commit` *(: Initial Commit)\_
+
+- npm으로 테일윈드CSS 패키지 설치  
+  `$npm install tailwindcss @tailwindcss/cli --save-dev`  
+  **`<`실습 목적`>`** pnpm으로 설치하기 위해 삭제 // node_modules 폴더도 삭제  
+  `$npm remove tailwindcss @tailwidcss/cli`
+- pnpm으로 패키지 설치 / 업데이트 -> pnpm이 메세지도 깔끔하게 뜨고 빠르고 폴더도 깔끔!  
+  `$pnpm add tailwindcss @tailwindcss/cli --save-dev`  
+  `$pnpm add -g pnpm`  
+  **====> pnpm-lock.yaml 생김**
+
+- `add` & `commit` _(: Install wailwind package)_
+- .html에는 `output.css` 연결 & .css에는 `@import "tailwindcss"` 선언: 패키지가 알아서 연결해줌
+-
+- (json에 미등록 상태라) 명령어로 output 파일 생성  
+  `npx tailwindcss -i ./src/styles/input.css -o ./src/styles/output.css`
+
+- node_modules 폴더 보이기/안보이기 토글 생기게 하는 익스텐션  
+  https://marketplace.visualstudio.com/items?itemName=chrisbibby.hide-node-modules  
+  : .vscode 폴더 안의 `settings.json` 도 만들어줌. 여기서 프로젝트의 세팅 설정 가능
+
+- `settings.json`에 설정 넣음 / settings에서 `tailwind hover`/`tailwind emmet`/`tailwind suggestions` 체크
+- 서버설정
+  - html에 만든 내용은 build를 해야 out.css에 가서 반영이 됨  
+    -> 매번 빌드해줘야 하기 때문에 번거로움 : `--watch` 옵션을 줘서 빌드할 때 바뀐 걸 계속 반영하게 함  
+     서버 실행: ctrl+c 하기 전까지 왓치모드로 지켜보고 있다가 계속 재빌드해줌
+  - 테일윈드 빌드, 왓치, 서버를 한 번에 다 해야해서 npm-run-all 패키지 설치, script에 명령어 추가  
+    `$ npm i -D live-server npm-run-all`
+
+===> `$pnpm dev` 혹은 `$npm run dev` 로 서버 실행 가능
+
+#### tailwind CSS 활용
+
+- `@theme` -> 레이어 안에 들어감. `:root`는 레이어 안X. tailwind에서는 `@theme`에 정의할 것을 권장  
+  **[제일 낮음]** theme(선언), base(reset), components,utils **[제일 강함]**  
+  테일윈드에서는 이런 규칙이 있음
+
+  - 배경색: bg- ~
+  - 텍스트: text- ~
+  - 테두리: border- ~
+    @theme에서 색상만 재정의하면 그렇게 부를 수 있는 클래스들의 색상이 다 재정의됨
+
+  `--color-\*: initial;` 요걸 주면 **정의되어있던 걸 싹 무시하고** 내가 정의한 것만 쓰게 됨
+
+- breakpoint 넣은 반응형 화면도 도 간단히 구현 가능
+- css 작성하면 tailwind로 바꿔주는 익스텐션도 존재: EX: convert CSS to Tailwindcss
+- https://flowbite.com/tools/tailwind-cheat-sheet/ 클래스명 확인 가능 (공식 아니라 업데이트 늦기도)
+
+- `size-`클래스는 1:1비율로 사이즈 줌
+- **`space-y-N`**: 가장 바깥쪽을 제외한 안쪽에 gap 줌. flex나 grid아니여도 요소 사이사이 마진 줄 수 있는 속성!
+
+**※ tailwind.config.js <- 이제 없는 거. AI가 고치라하면 헛소리임**
+
+## 수업시간에 언급된, 찾아볼 내용
+
+- 드림코딩 유튜브 클론코딩
+- @support // 찾아보기 grid일때만실행됨
+- tree shaking : 쓸모없는 거 없애버림
+
+<br />
+<br />
+
+---
+
+---
+
+# 2025-03-11
+
+**tailwind CSS // Layout, iframe, priority, animation 등등**
+
+## 수업 내용
+
+### taiwind: index 페이지 실습
+
+- Arbitrary value 쓸 떄 공백은 \_로 표기
+
+### taiwind: iframe -반응형 영상 페이지 실습
+
+- `iframe`은 가로만 늘어나고 세로는 늘어나지 않음
+  비율 관련 유틸리티: `aspect-auto`(자동) / `aspect-squeare`(1:1) / `aspect-video`(16:9)
+
+- `overflow: hidden;`& `text-overflow: ellipsis;` & `white-space: nowrap` 3개 콤보 // 글 길면 말줄임표... 나오는 거  
+  -> `truncate` 유틸리티 1개로 해결 가능(부모에 min-w-0 넣어야 함)
+
+- 컴포넌트로 재활용하려고 만든 클래스는 `@layer components` 안에 넣어야 함  
+  밖에 있으면 우선순위 밀려서 적용 안됨 // 재사용성을 위해 컴포넌트 레이어 안에 기본 스타일을 정의하고 그 다음에 스타일 수정이 필요하면 유틸리티 스타일을 사용해서 변화를 주기
+
+- 모달
+  `opacity-0` (기본) `open:opacity-100`(오픈하면 100으로 바꿔줘)
+
+- 디자인 가져다 써서 페이지 만든 경우 '교육 목적으로 만들었다'라는 내용의 모달창을 넣을 것!
+- 컨테이너 쿼리도 바로 사용 가능 `@container w-[300px]` 이런 식으루
+
+**※ 캐시 지우는 방법**
+`$rm -rf ~/.degit`
+
+## 수업시간에 언급된, 찾아볼 내용
+
+- Arbitrary value
+
+  > CSS나 Tailwind CSS 같은 유틸리티 기반 스타일 시스템에서 특정 값이 미리 정의되지 않은 경우, 개발자가 직접 원하는 값을 넣을 수 있도록 허용하는 기능
+  > **-> 프레임워크에서 제공하는 기본 값이 아니라 개발자가 자유롭게 지정할 수 있는 값**
+
+  - 예시
+    ```HTML
+      <div class="bg-[#1e293b]">임의의 색상</div>
+      <div class="p-[22px]">임의의 패딩</div>
+    ```
+
+  <br />
+  <br />
+
+---
+
+---

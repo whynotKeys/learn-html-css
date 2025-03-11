@@ -1,0 +1,72 @@
+@layer module, state;
+/* @layer named끼리는 정의한 순서가 뒤에 올수록 강함 
+   ※ named -> unnamed -> no layer (global=제일 강함)*/
+
+@layer state {
+  p.alert {
+    background-color: purple !important ;
+  }
+  p {
+    border: medium solid limegreen;
+    padding: 2em;
+  }
+}
+
+/* 제일 우선순위가 낮은 module에 !important를 줬을 때 가장 강함 */
+@layer module {
+  .alert {
+    border: medium solid violet;
+    color: white;
+  }
+  p {
+    padding: 1em;
+  }
+  p.alert {
+    background: red !important ;
+  }
+}
+
+@layer {
+  p.alert {
+    background: blue !important ;
+  }
+}
+
+p.alert {
+  background: gray !important ;
+}
+
+/* 테스트 */
+.container {
+  width: 6.25rem;
+  height: 3.125rem;
+  background: pink;
+
+  ::after {
+    content: 'no-layer';
+  }
+}
+
+@layer {
+  .container {
+    width: 3.125rem;
+    height: 3.125rem;
+    background: blue;
+
+    ::after {
+      content: 'noname-layer';
+    }
+  }
+}
+
+@layer test {
+  .container {
+    width: 3.125rem;
+    height: 6.25rem;
+    background: red;
+
+    ::after {
+      content: 'layer';
+    }
+  }
+}
