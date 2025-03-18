@@ -2082,3 +2082,86 @@ margin-block: 50px;
 ---
 
 ---
+
+# 2025-03-12
+
+**CSS // tailwindCSS & vite**
+
+## 수업 내용
+
+### vite
+
+- https://ko.vite.dev/guide/
+- `webpack` // 자바스크립트 애플리케이션을 위한 모듈 번들러(Module Bundler). 설정 복잡하고 속도 느리다는 단점
+- Tailwind 구조  
+   => CLI 사용 시, **index.html이 꼭 src 안에 있어야 함**.  
+   (`tailwind.config.js`의 content 배열에 지정된 파일이 있는 곳을 루트로 인식)  
+   : 기본세팅에서는 `index.html`이 있는 곳을 루트로 인식함(= src가 root)
+  - vite는 **index파일을 기준으로 프로젝트의 경로를 잡음**
+    : index가 루트에 있어야 함
+    (build.rollupOptions.input 설정을 통해 위치를 변경할 수 있음)
+- build하면 매번 dist 폴더를 만들어냄: 캐싱 방지를 위해 지우는 게 좋음
+  -> 지우라는 명령 clean으로 등록
+- vite는 js만 연결하면 js가 styles갖고있다가 output이랑 다 연결해줌
+- Vite는 자원을 `public/` 폴더와 `src/` 폴더로 나누어 관리
+
+  1.  `public/` 폴더
+
+      - Vite가 변환하지 않는 정적 파일을 넣는 곳
+      - HTML, 이미지, 폰트, JSON 등 그대로 사용해야 하는 자원 저장
+      - `public/` 폴더 안의 파일은 빌드 시 변형 없이 `dist/`로 **그대로 복사됨**
+      - **절대경로(/assets/image.png)**를 사용하여 접근 가능 → public 폴더명을 생략하고 사용
+      - 명시 예
+
+      ```CSS
+        <img src="/logo.png" alt="Logo" />
+      ```
+
+  2.  `src/` 폴더
+
+      - Vite가 변환(번들링, 최적화)하는 파일을 넣는 곳
+      - JavaScript, TypeScript, CSS, SCSS, 이미지 파일 등 해시값이 붙는 파일 저장
+      - 상대경로(`./assets/logo.png`)로 참조하여 import 가능
+      - 명시 예
+
+      ```CSS
+        import logo from'./assets/logo.png';
+      ```
+
+      이렇게 하면 Vite가 `logo.png`를 빌드 시 최적화하고, 최종적으로 dist/에서 해시가 붙은 파일명으로 변환됨
+
+      => `build`하면 `dist/`폴더 생기면서, `public/`의 파일은 그대로 복사됨
+      `src/`의 자원들은 최적화되면서 **해시**가 붙음 → `index.html`에서 해시가 붙은 파일을 참조
+
+- 폰트는 CSS에서 연결ㄴㄴ HTML에서 연결해서 쓰기!
+  // CSS에 해두면 시스템이 불필요한 최적화 시도함
+- `preload`:: webfont blonking 방지.
+  안 하면 폰트 받아서 그릴 때 화면이 깜빡하는 현상 발생하기도 함
+- 네트워크 체크
+  https://developers-kr.googleblog.com/2020/05/Introducing-Web-Vitals.html
+
+- **npm-run-all** 설치 및 명령어 세팅
+
+  1. `$ npm install npm-run-all --save-dev` 로 패키지 설치
+  2. `package.json`파일 `scripts에 하기 내용 추가
+`"compile":"run-s clean build preview"`
+     **===> 한 방에 클린-빌드-미리보기 할 수 있도록 세팅 가능**
+
+- 여러 개의 이미지 사용 시, `@theme` 안에 `image-set`으로 경로를 2개 세트씩 묶어놓고 부르면 깔끔함 // 강사님 apple 코드 참고
+- **버튼 내 가운데 정렬** // `inline-flex justify-center items-center`
+
+#### 환경구성
+
+- dev = 개발환경에서 실시간 확인
+  build + preview = 실제 서비스 올리기전(push 전) 최종 검토
+
+## 수업시간에 언급된, 찾아볼 내용
+
+- SPA / MPA
+
+<br />
+<br />
+
+---
+
+---
