@@ -2165,3 +2165,244 @@ margin-block: 50px;
 ---
 
 ---
+
+# 2025-03-13
+
+**UI프로젝트 // 프로젝트 세팅 및 준비**
+
+## 수업 내용
+
+### 프로젝트 안내
+
+- 프로젝트 관련 질문은 질문방에, 음성 도움 필요한 경우 SOS 말머리로 올릴 것
+- PT, 자료 정리 등에 시간 쓰지 않도록 이번에는 따로 발표 안 시킬 예정!
+  -> 대신 index page에 문서, 컴포넌트, 프로젝트 페이지 연결해서 팀 당 5~10분(최대) 내외로 소개하는 시간 있을 것
+- gitHub 데일리스크럼 / 마일스톤 사용 권장
+- scaffolding(스캐폴딩) : 기본적인 골격/구조를 잡는 것 ※`비계(높은 곳에서 공사할 수 있도록 임시로 설치한 가설물)`라는 뜻
+
+### 프로젝트 세팅 실습: GitHub
+
+**<스크럼 마스터가 해야할 일>**
+
+1. **gitHub** 조직-> `create a new repository` // name, description 고민해서 넣을 것. `public` 선택
+   ※ `Netrify`는 무료이용자에게 Private 저장소 배포 서비스는 제공X. 버셀은 가능
+2. 생성한 Repository `git clone`으로 로컬에 가져옴
+3. tailwind 사용 여부 팀끼리 협의해서 결정. 슬비쌤 git에 스캐폴딩 끝난 기본 구성 프로젝트 준비해둠: `degit`으로 가져와서 폴더에 넣기-
+   : ※ degit으로 가져왔기 때문에 기존 remote가 살아있음. history도 그대로 남음
+4. 업데이트 된 내용을 `add/commit/push`
+5. gitHub에서 GUI로 브랜치 생성 // `view all branches -> New branch 버튼 -> develop` 입력 **항상 develop에서 작업!**
+   -> 팀원들도 develop 받아서 작업하게할 것임 >>> `Settings`에서 `Genera`l 가서 `Default branch`를 `develop`으로 전환
+6. 로컬에서 develop 브랜치를 가져옴 `$git switch -c develop origin/develop`
+7. 실수하지 않도록 로컬에 있는 main 브랜치 삭제 `$git branch -d main`
+8. PR템플릿 사용하기 위해 `.guthub폴더`+그 안에 `PULL-REQUEST-TEMPLATE.md `파일 생성 **※ fetch+merge=pull**, pull request의 규칙 정의
+   **※ PR: 내 이슈 완료했어 다들 퍼가요 하세요~ 라는 뜻**
+   => 기능 완성, 버그 픽스 후 등등 <U>문제없이 동작하는것이 확인된 상태에서</U> PR 올림. 코드에 문제가 있다면 PR도 거절당할 수 있음
+   ※ guthub폴더에는 ISSUE template, PR template 등 깃헙에서 사용할 파일들 저장
+9. main/develop 브랜치 보호를 위한 규칙 추가
+   : gitHub `Settings`-`Branches`-`Branch Protection rules`에서 `Add branch ruleset` 선택하고 규칙 설정
+   : Ruleset Name `main-develop-protections`으로 지정(다른 이름 해도 됨) 상태 Active로 설정
+   : 특정 멤버에게만 예외로 적용할 경우 Bypass 항목에 추가 [실습 시 요건 할 필요 ㄴㄴ]
+   : 브랜치 삭제 제한, **강제(-force) Push 할 수 없도록 설정**
+   : 병합 시 팀 멤버의 승인을 거치도록 설정하고 승인이 필요한 멤버의 수 지정 // 최소 1명 이상 넣을 것
+10. 멤버 초대 // `Settings -> Collaborators and teams -> Add people` // `Role`도 지정 가능
+
+**<멤버가 할 일>**
+
+1. 초대 수락
+2. local로 `clone` 한 후 `npm install`로 패키지 설치
+3. PR 생성
+
+- ISSUE/MILESTONE/태그 등등 미리 해보기
+  ※ ISSUE에서 바로 브랜치 딸 수 있음 // 팀 멤버가 ISSUE 딸 수도 있음.
+  bugfix/issuename 이런 식으로 만들면 좋음/ 개인 브랜치 말고 이슈 브랜치를 쓸 것!
+
+- 브랜치 따서 ISSUE update, add commit push해서 연결
+
+- gitHub에서 Open a pull request -> 가면 미리 등록한 PR템플릿 있음. 유형 중 push 건에 해당 부분만 x체크 후 나머지 항목을은 지워버뤼귀
+  체크리스트체크, PR 상세에는 의견 남기고싶은 분 작성
+
+- 프로젝트 - Create new issue에서Repository 선택 후 blank issue에서 title/description 입력해서 발행 가능.
+
+- 추천 진행 방식: 아침에 SCRUM 하고 마스터 화면 같이 보면서 ISSUE 생성/배정하기
+
+- gitHub에서 `프로필-your organizations-new organization` // `setup`할 때 `organization name` 겹치면 안됨.
+  like-lion-$ 이메일주소 입력 / My personal account 선택
+
+- 디스코드 알림 연결 가능: merge 할 때마다 알림
+
+### 프로젝트 세팅 실습: 컨벤션 및 위키
+
+- 커밋 메세지에 이슈 넘버 붙이면 푸시했을 떄 자동으로 이슈 컴플리트 됨!
+- gitHubwiki : 깃헙 저장소랑은 별도임! 따로 운영되는 위키..
+  안되면 대문에 멤버 소개 요런 거라도 해주면 좋겠다고 하심
+
+### 프로젝트 배포 실습: vite+Github+Netlify
+
+https://wholesale-snipe-50a.notion.site/Vite-Github-Netlify-1eb209e59e364c0ba4ceba71a15a0ad6
+
+#### 초기 배포 세팅
+
+- gitHub에 소스 `push`, develop에 `merge` -> main에 `merge` ※ dist 없는 상태
+- Netrify 접속
+  1. 조직 계정 선택 -`selected repository` - `branch` main으로 설정
+  2. `Build settings`에서 `Base directory` -> `dist` 라고 입력 (: 배포될 디렉토리가 dist야)
+  3. `Build command`에 `npm run build` 라는 명령어 입력 -> Netrify가 `package.json` 보고 필요한 거 깔아서 이 명령어로 빌드/배포하겠다는 의미
+  4. `Deploy UI project` 버튼 클릭
+  5. `Deploy log` 에 전부 compelete 떴나 확인
+- Site overview에서 주소 확인 가능 // site name 바꿀 수 있음
+
+#### 업데이트 내용 반영
+
+1. 로컬에서 `npm run dev` // `npm run build` // `npm run preview` // `npm run clean` 으로 확인 및 정리
+2. `git add/commit/push` 해서 브랜치 내용 보내기
+3. gitHub에서 `Compare & pull reques`t 누르고 `base/compare` 설정 (base가 반영 되는 쪽!(main))
+   => 요청 후 `merge` 진행
+4. `merge` 끝나면 netrify bot 뜨면서 배포 확인/미리보기/QR 뜸
+
+- 내일 테스트페이지 미리 배포해둘 것
+- 2~3일에 한 번 씩 메인에 merge해서 배포결과 확인
+
+## 수업시간에 언급된, 찾아볼 내용
+
+- 애자일 스크럼
+- **백로그** : 주로 애자일(Agile) 개발 방식에서 사용되는 용어로, 앞으로 해야 할 작업들의 목록을 의미
+
+  1. 제품 백로그(Product Backlog) // 전체 프로젝트에 필요한 모든 기능, 요구사항, 개선사항, 버그 수정 항목 등을 정리한 목록
+     - 제품 책임자(Product Owner)가 관리
+     - 항목은 우선순위가 매겨지며, 높은 우선순위의 항목부터 개발에 들어감
+     - 항목들은 일반적으로 에픽(Epic), 유저 스토리(User Story), 태스크(Task) 등의 형태로 표현
+  2. 스프린트 백로그(Sprint Backlog) // 현재 스프린트(짧은 개발 주기) 동안 개발팀이 작업할 항목들만 따로 모아놓은 목록
+     - 개발팀이 직접 작업 범위와 목표를 정하고 관리
+     - 각 항목은 더 세부적인 작업 단위(흔히 issue 또는 task)로 나뉘어 실행 됨
+
+- 문서 정리를 잘 할 것. troubleshooting 경험 정리하는 거 좋음
+
+<br />
+<br />
+
+---
+
+---
+
+# 2025-03-14
+
+**UI프로젝트 // 시안 확정, 개발환경 및 프로젝트 세팅**
+
+## 수업 내용
+
+### UI프로젝트 시안 배포
+
+https://drive.google.com/drive/folders/1QBYEoGPMd4M-TJoM8LevonP8qYrZ3j1D?usp=drive_link
+
+- figma에서 plugins -> export styles to CSS variavles 기능 -> 원하는 옵션 선택 후 Generate
+  -> CSS 변수로 뽑아줌 // 유료에서만 가능한 기능
+
+- Magic Patterns -> 특정 서비스에서 원하는 UI뽑아서 가져올 수 있음 (figma/React Component)
+  1.  html to React & Figma by Magic Patterns 라는 크롬 확장 프로그램 설치
+      https://chromewebstore.google.com/detail/html-to-react-figma-by-ma/chgehghmhgihgmpmdjpolhkcnhkokdfp?hl=ko
+  2.  원하는 웹서비스 화면에서 select HTML 버튼 클릭하고 원하는 요소 덩어리를 클릭(파랗게 보임)
+  3.  magicpatterns 사이트로 이동 되며 react 코드/html/figma 로 export할 수 있게 됨
+  4.  figma로 export : Layer ID값 줌
+      figma Plugins->Magic Patterns 설치하고 선택하면 Layer ID 입력창 뜸
+  5.  ID 입력하면 figma에 디자인 들어옴
+      ----html.to.design -> 페이지 단위로도 가져올 수 있는 플러그인
+
+https://frontendfoc.us/issues/683
+
+- prettierrc.cjs
+  mjs만 되는 기기도 있고, cjs만 되는 기기도 있고, mjs문법 방식을 cjs에 넣어야 되는 경우도 있음
+
+<br />
+<br />
+
+---
+
+---
+
+# 2025-03-25
+
+**UI프로젝트 // 프로젝트 종료 : 강사님 피드백**
+
+## 수업 내용
+
+### 프로젝트 진행 시 주의사항
+
+- SEO 관점/검색 최적화 관점에서 검토해볼 것
+- 중간배포를 통해 미리 검수하고 개선할 것
+- 프로젝트 공간에 평가보고서 등의 문서 추가 // 발표 시 해당 내용도 발표할 것
+- 검수도구 및 피드백 링크  
+  https://www.notion.so/UI-1c073873401a8089bbd5e5c92a261db3
+
+### 공통 피드백
+
+- `commit message` 통일성 지킬 것 // 큰 프로젝트 깃허브의 커밋메세지 참고
+- `README.md`에 배포사이트 넣어두니 좋다 // 참고 사이트도 넣으면 완벽
+  README 잘 한 팀 : 8팀, 11팀, 16팀
+- `명도대비` 3 이상, 4.5 정도 권장 // `비즈버그`라는 확장 프로그램 사용하면 쉽게 확인 가능
+- 스크롤해야 나오는 디자인은 **사용자 입장에서** 좋은 UI는 아님
+- 장식용 이미지는 `alt=""`로 하는 것을 권장. `aria-hidden`은 '화면에 보이지만 읽지 마세요'라는 의미일 때 사용
+- 마우스로 사용할 수 있는 기능은 키보드로도 똑같이 사용 가능해야 함
+  -> hover하면 보이거나, hover하면 뒤집혀서 내용 나오는 기능 지양할 것
+
+- `label`/`placeholder`/`aria-label` 비슷해보여도 다름. 사용 시 주의
+  - `<button>`이나 `<a>` 같은 인터랙티브 요소가 비어있어서 **읽을 내용이 없을 때** `aria-label` 사용. label 있으면 굳이 쓸 필요X
+  - ARIA in HTML (W3C) 글 읽어보이면 좋을 듯
+
+-애니메이션 너무 많이 쓰지 말 것. 광과민성 발작 등을 유발할 수 있는 요소이니 정지시키는 버튼 있어야 함
+
+- `prefers-reduced-motion` : 동작 줄이기 옵션. 기본 애니메이션에 별도로 dissolve된 효과를 적용하거나 애니메이션을 제거 하고 보여줌
+
+  ```CSS
+    @media (prefers-reduced-motion) {
+      /* 여기 줄어든 효과의 애니메이션을 정의 */
+    }
+  ```
+
+- CSS 배경으로 처리한 아이템 이미지 js 로 하려면 `<img>` 태그를 사용하는 것이 좋을 것(경로만 바꿔치기 할 수 있게)
+- apple 사이트
+  `<a>`태그로 전체 카드영역 클릭할 수 있지만, 탭 이용 시 글만 접근할 수 있음
+  // `event-bubbling`, `event-capturing` 사용한 것
+- 컬러를 선택할 수 있게 하려면 색깔에 해당하는 text도 제공할 것
+
+## 수업시간에 언급된, 찾아볼 내용
+
+- CSR(ex_React) 과 SSR(ex_Next)
+
+  - **CSR (Client-Side Rendering = 클라이언트 사이드 렌더링)**
+
+    - 웹 페이지의 대부분을 브라우저(클라이언트) 에서 렌더링하는 방식
+    - 사용자가 페이지에 접근하면, 서버는 빈 HTML과 JavaScript 파일을 보내고 브라우저가 JavaScript를 실행해서 필요한 데이터를 받아와 화면을 구성 함
+    - 장점
+      1. 사용자 경험이 부드러움 (페이지 전환 시 새로고침이 없음)
+      2. 서버 부담이 적음
+    - 단점
+      1. 초기 로딩 속도가 느림
+      2. 검색 엔진(SEO)에 불리할 수 있음
+    - 대표 프레임워크: `React`, `Vue` 등 대부분의 SPA 프레임워크
+
+  - **SSR (Server-Side Rendering = 서버 사이드 렌더링)**
+    - 웹 페이지를 서버에서 미리 렌더링해서 HTML로 만든 뒤, 사용자에게 보내는 방식
+    - 사용자가 페이지에 접근하면, 서버가 데이터를 가져와서 완성된 HTML을 만들어 보내고 브라우저는 그 HTML을 바로 화면에 보여줌
+    - 장점
+      1. 초기 로딩 속도가 빠름
+      2. 검색 엔진 최적화(SEO)에 유리함
+    - 단점
+      1. 서버 부하가 큼
+      2. 사용자와의 인터랙션이 많을 경우 제한적일 수 있음
+    - 대표 프레임워크: `Next.js`, `Nuxt.js` 등
+
+- 비교표
+  | 항목 | CSR (Client-Side Rendering) | SSR (Server-Side Rendering) |
+  | ----------- | --------------------------- | --------------------------- |
+  | 렌더링 위치 | 브라우저 | 서버 |
+  | 초기 속도 | 느림 | 빠름 |
+  | SEO | 불리함 | 유리함 |
+  | 서버 부하 | 적음 | 많음 |
+  | 사용 예 | React 앱 | Next.js 앱 |
+
+<br />
+<br />
+
+---
+
+---
